@@ -1,0 +1,19 @@
+{
+  "application": "sketch",
+  "shortcuts": [
+    {
+      "description": "Speichern",
+      "shortcut": {
+        "osx": ["cmd", "s"],
+        "win": ["strg", "s"]
+      }
+    },
+    {
+      "description": "Speichern unter",
+      "shortcut": {
+        "osx": ["cmd", "shift", "s"],
+        "win": ["strg", "shift", "s"]
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+.TimeList__list {
+  list-style: none;
+  padding: 0px;
+  margin: 15px auto;
+}
+
+.TimeList__listwrap {
+  margin: 0 auto;
+}
+
+.TimeList__headers {
+  width: 100%;
+}
+
+.TimeList__headers span {
+  width: 25%;
+  font-weight: bold;
+
+  display: inline-block;
+  float: left;
+}
+
+.Time {
+  text-align: center;
+}
+
+.Time__number,
+.Time__time,
+.Time__prevTime {
+  width: 25%;
+  padding: 5px;
+
+  display: inline-block;
+  box-sizing: border-box;
+}
