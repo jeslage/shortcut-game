@@ -1,12 +1,11 @@
 import React, { useContext, useRef } from 'react';
 import { SettingsContext } from '../context/SettingsProvider';
 import { TimerContext } from '../context/TimerProvider';
-import { ResultContext } from '../context/ResultProvider';
 
 const Start = () => {
   const {
     setPlayer,
-    setSelectedApp,
+    updateSelectedApp,
     selectedApp,
     registeredApps,
     setView
@@ -26,7 +25,7 @@ const Start = () => {
         <p>{selectedApp}</p>
         <label>Whats your name</label>
         <input type="text" placeholder="Name" name="player" ref={input} />
-        <select onChange={e => setSelectedApp(e.target.value)}>
+        <select onChange={e => updateSelectedApp(e.target.value)}>
           {registeredApps.map(app => (
             <option value={app} key={app}>
               {app}

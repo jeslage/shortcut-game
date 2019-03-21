@@ -6,6 +6,7 @@ import {
   getRandomShortcut
 } from '../../context/SettingsProvider';
 import { useWindowEvent } from '../../utils/hooks';
+import getKeyName from '../../utils/getKeyName';
 
 const Shortcuts = ({ addShortcutTime, stopTimer }) => {
   const {
@@ -27,9 +28,11 @@ const Shortcuts = ({ addShortcutTime, stopTimer }) => {
   const handleKeyDown = e => {
     e.preventDefault();
 
+    const key = getKeyName(e.key);
+
     // Check if key is already in array, if not add it
-    if (!pressedKeys.includes(e.key)) {
-      pressedKeys.push(e.key);
+    if (!pressedKeys.includes(key)) {
+      pressedKeys.push(key);
     }
 
     // Check if pressed keys are equal to shortcut
