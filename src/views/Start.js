@@ -1,6 +1,7 @@
 import React, { useContext, useRef } from 'react';
 import { SettingsContext } from '../context/SettingsProvider';
 import { TimerContext } from '../context/TimerProvider';
+import { ResultContext } from '../context/ResultProvider';
 
 const Start = () => {
   const {

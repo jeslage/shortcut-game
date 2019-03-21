@@ -1,10 +1,13 @@
 import React from 'react';
 import TimerProvider from './TimerProvider';
 import SettingsProvider from './SettingsProvider';
+import ResultProvider from './ResultProvider';
 
 const GameProvider = ({ children }) => (
   <SettingsProvider>
-    <TimerProvider>{children}</TimerProvider>
+    <TimerProvider>
+      <ResultProvider>{children}</ResultProvider>
+    </TimerProvider>
   </SettingsProvider>
 );
 

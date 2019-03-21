@@ -25,7 +25,12 @@ const SettingsProvider = ({ children }) => {
   const [availableShortcuts, setAvailableShortcuts] = useState(
     removeFromShortcuts(shortcuts[selectedApp], firstShortcut)
   );
-  const [usedShortcuts, setUsedShortcuts] = useState([]);
+
+  const [round, setRound] = useState(0);
+
+  const removeFromAvailableShortcuts = (arr, shortcut) => {
+    setAvailableShortcuts(removeFromShortcuts(arr, shortcut));
+  };
 
   return (
     <SettingsContext.Provider
@@ -34,12 +39,12 @@ const SettingsProvider = ({ children }) => {
         currentShortcut,
         setCurrentShortcut,
         availableShortcuts,
-        setAvailableShortcuts,
-        usedShortcuts,
-        setUsedShortcuts,
+        removeFromAvailableShortcuts,
         view,
         selectedApp,
         player,
+        round,
+        setRound,
         setPlayer,
         setView,
         setSelectedApp

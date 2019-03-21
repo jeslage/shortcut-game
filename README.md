@@ -2,6 +2,4 @@
 
 ### TODOS
 
-- keydown & keyup events
-- setView(3) ✅
-- update useWindowEvent hook
+- update useWindowEvent hook, so that it doesnt fire on every update

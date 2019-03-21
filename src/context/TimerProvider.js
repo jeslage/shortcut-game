@@ -45,9 +45,13 @@ class TimerProvider extends Component {
 
   addShortcutTime = shortcut => {
     const { time, timeList } = this.state;
+    const difference =
+      timeList.length > 0
+        ? time - timeList[timeList.length - 1].timePassed
+        : time;
 
     this.setState({
-      timeList: [...timeList, { time, shortcut }]
+      timeList: [...timeList, { timePassed: time, difference, ...shortcut }]
     });
   };
 

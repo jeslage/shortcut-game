@@ -8,6 +8,5 @@ const config = {
   storageBucket: 'shortcut-game.appspot.com',
   messagingSenderId: '792913187186'
 };
+
 firebase.initializeApp(config);
-const databaseRef = firebase.database().ref();
-export const scoresRef = databaseRef.child('scores');

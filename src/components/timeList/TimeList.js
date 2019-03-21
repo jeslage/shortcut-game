@@ -5,15 +5,13 @@ import timeFormat from '../../utils/timeFormat';
 
 import './TimeList.css';
 
-const Time = ({ number, time, shortcut, prevTime }) => (
+const Time = ({ number, timePassed, description, difference }) => (
   <div className="Time">
     <span className="Time__number">{number}</span>
-    <span className="Time__shortcut">{shortcut.description}</span>
-    <span className="Time__time">{timeFormat(time)}</span>
+    <span className="Time__shortcut">{description}</span>
+    <span className="Time__time">{timeFormat(timePassed)}</span>
 
-    <span className="Time__prevTime">
-      {prevTime ? timeFormat(time - prevTime) : timeFormat(time)}
-    </span>
+    <span className="Time__prevTime">{timeFormat(difference)}</span>
   </div>
 );
 
@@ -33,9 +31,9 @@ const TimeList = ({ timeList }) => (
             <li key={index}>
               <Time
                 number={index + 1}
-                time={entry.time}
-                shortcut={entry.shortcut}
-                prevTime={index > 0 ? timeList[index - 1].time : null}
+                timePassed={entry.timePassed}
+                description={entry.description}
+                difference={entry.difference}
               />
             </li>
           );
@@ -48,10 +46,8 @@ TimeList.propTypes = {
   timeList: PropTypes.arrayOf(
     PropTypes.shape({
       time: PropTypes.number,
-      shortcut: PropTypes.shape({
-        shortcut: PropTypes.arrayOf(PropTypes.string),
-        description: PropTypes.string
-      })
+      shortcut: PropTypes.arrayOf(PropTypes.string),
+      description: PropTypes.string
     })
   )
 };

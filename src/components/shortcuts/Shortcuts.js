@@ -3,8 +3,7 @@ import isEqual from 'lodash.isequal';
 
 import {
   SettingsContext,
-  getRandomShortcut,
-  removeFromShortcuts
+  getRandomShortcut
 } from '../../context/SettingsProvider';
 import { useWindowEvent } from '../../utils/hooks';
 
@@ -12,53 +11,43 @@ const Shortcuts = ({ addShortcutTime, stopTimer }) => {
   const {
     currentShortcut,
     setCurrentShortcut,
-    setUsedShortcuts,
-    usedShortcuts,
     availableShortcuts,
-    setAvailableShortcuts,
-    setView
+    removeFromAvailableShortcuts,
+    setView,
+    setRound,
+    round
   } = useContext(SettingsContext);
-
-  let pressedKeys = [];
-
-  if (usedShortcuts.length === 5) {
-    stopTimer();
-    setView(prev => prev + 1);
-  }
 
   useWindowEvent('keydown', e => handleKeyDown(e));
   useWindowEvent('keyup', e => handleKeyUp(e));
 
+  // Make empty array for pressed keys to compare arrays
+  let pressedKeys = [];
+
   const handleKeyDown = e => {
     e.preventDefault();
 
+    // Check if key is already in array, if not add it
     if (!pressedKeys.includes(e.key)) {
       pressedKeys.push(e.key);
     }
 
+    // Check if pressed keys are equal to shortcut
     if (isEqual(pressedKeys, currentShortcut.shortcut)) {
       const newShortcut = getRandomShortcut(availableShortcuts);
+      const solvedRound = round + 1;
 
+      setRound(solvedRound);
       addShortcutTime(currentShortcut);
-      setUsedShortcuts(state => [...state, currentShortcut]);
-
       setCurrentShortcut(newShortcut);
 
-      setAvailableShortcuts(
-        removeFromShortcuts(availableShortcuts, newShortcut)
-      );
+      removeFromAvailableShortcuts(availableShortcuts, newShortcut);
+
+      if (solvedRound === 5) {
+        stopTimer();
+        setView(prev => prev + 1);
+      }
     }
-  };
-
-  const handleClick = () => {
-    const newShortcut = getRandomShortcut(availableShortcuts);
-
-    addShortcutTime(currentShortcut);
-    setUsedShortcuts(state => [...state, currentShortcut]);
-
-    setCurrentShortcut(newShortcut);
-
-    setAvailableShortcuts(removeFromShortcuts(availableShortcuts, newShortcut));
   };
 
   const handleKeyUp = e => {
@@ -68,7 +57,6 @@ const Shortcuts = ({ addShortcutTime, stopTimer }) => {
 
   return (
     <>
-      <button onClick={() => handleClick()}>Add</button>
       <h2 className="Shortcuts">{currentShortcut.shortcut}</h2>
     </>
   );
