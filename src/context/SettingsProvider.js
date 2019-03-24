@@ -13,10 +13,10 @@ export const removeFromShortcuts = (arr, shortcut) => {
 };
 
 const SettingsProvider = ({ children }) => {
-  const { applications, shortcuts } = config;
+  const { applications, shortcuts, systems } = config;
 
   const [view, setView] = useState(1);
-  const [player, setPlayer] = useState('');
+  const [player, setPlayer] = useState();
   const [round, setRound] = useState(0);
 
   const [selectedApp, setSelectedApp] = useState(applications[0]);
@@ -49,6 +49,7 @@ const SettingsProvider = ({ children }) => {
         removeFromAvailableShortcuts,
         view,
         selectedApp,
+        systems,
         player,
         round,
         setRound,

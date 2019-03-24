@@ -5,10 +5,13 @@ import {
   SettingsContext,
   getRandomShortcut
 } from '../../context/SettingsProvider';
+
 import { useWindowEvent } from '../../utils/hooks';
 import getKeyName from '../../utils/getKeyName';
 
-const Shortcuts = ({ addShortcutTime, stopTimer }) => {
+import Hint from '../hint/Hint';
+
+const Shortcuts = ({ addShortcutTime, stopTimer, resetTimer }) => {
   const {
     currentShortcut,
     setCurrentShortcut,
@@ -29,6 +32,13 @@ const Shortcuts = ({ addShortcutTime, stopTimer }) => {
     e.preventDefault();
 
     const key = getKeyName(e.key);
+
+    // Escape for quitting game
+    if (key === 'Escape') {
+      stopTimer();
+      resetTimer();
+      setView(prev => prev - 1);
+    }
 
     // Check if key is already in array, if not add it
     if (!pressedKeys.includes(key)) {
@@ -60,7 +70,8 @@ const Shortcuts = ({ addShortcutTime, stopTimer }) => {
 
   return (
     <>
-      <h2 className="Shortcuts">{currentShortcut.shortcut}</h2>
+      <h2 className="Shortcuts">{currentShortcut.description}</h2>
+      <Hint />
     </>
   );
 };

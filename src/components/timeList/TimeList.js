@@ -3,44 +3,42 @@ import PropTypes from 'prop-types';
 
 import timeFormat from '../../utils/timeFormat';
 
-import './TimeList.css';
+import StyledTimeList from './TimeList.style.js';
 
 const Time = ({ number, timePassed, description, difference }) => (
-  <div className="Time">
-    <span className="Time__number">{number}</span>
-    <span className="Time__shortcut">{description}</span>
-    <span className="Time__time">{timeFormat(timePassed)}</span>
-
-    <span className="Time__prevTime">{timeFormat(difference)}</span>
-  </div>
+  <>
+    <td className="Time__shortcut">{description}</td>
+    <td className="Time__time">{timeFormat(timePassed)}</td>
+    <td className="Time__prevTime">{timeFormat(difference)}</td>
+  </>
 );
 
 const TimeList = ({ timeList }) => (
-  <div className="TimeList">
-    <div className="TimeList__listwrap">
-      <div className="TimeList__headers">
-        <span>Nummer</span>
-        <span>Shortcut</span>
-        <span>Gesamtzeit</span>
-        <span>Einzelzeit</span>
-      </div>
+  <StyledTimeList>
+    <table>
+      <thead>
+        <tr>
+          <th class="Timelist__shortcut">Shortcut</th>
+          <th>Gesamtzeit</th>
+          <th>Einzelzeit</th>
+        </tr>
+      </thead>
 
-      <ul className="TimeList__list">
-        {timeList.map((entry, index) => {
+      <tbody>
+        {timeList.reverse().map((entry, index) => {
           return (
-            <li key={index}>
+            <tr key={entry.timePassed}>
               <Time
-                number={index + 1}
                 timePassed={entry.timePassed}
                 description={entry.description}
                 difference={entry.difference}
               />
-            </li>
+            </tr>
           );
         })}
-      </ul>
-    </div>
-  </div>
+      </tbody>
+    </table>
+  </StyledTimeList>
 );
 TimeList.propTypes = {
   timeList: PropTypes.arrayOf(

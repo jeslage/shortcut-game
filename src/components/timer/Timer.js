@@ -2,11 +2,11 @@ import React, { useContext } from 'react';
 
 import timeFormat from '../../utils/timeFormat';
 import { TimerContext } from '../../context/TimerProvider';
-import './Timer.css';
+import StyledTimer from './Timer.style.js';
 
 const Timer = () => {
   const { time } = useContext(TimerContext);
-  return <h2 className="Timer">{timeFormat(time)}</h2>;
+  return <StyledTimer>{timeFormat(time)}</StyledTimer>;
 };
 
 export default Timer;
