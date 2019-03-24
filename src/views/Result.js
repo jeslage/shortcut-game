@@ -28,7 +28,7 @@ const Result = () => {
           </li>
         ))}
       </ul>
-      <p>Go ahead, {timeFormat(time)}</p>
+      <p>{timeFormat(time)}</p>
     </>
   );
 };

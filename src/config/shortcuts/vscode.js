@@ -1,34 +1,58 @@
 export default [
   {
-    description: 'Code Speichern',
-    shortcut: ['Cmd', 'r']
+    description: 'Ausschneiden',
+    shortcut: ['Cmd', 'x']
   },
   {
-    description: 'S Speichern unter VS',
-    shortcut: ['Cmd', 'Shift', 's']
-  },
-  {
-    description: 'A Speichern VS',
-    shortcut: ['Cmd', 'a']
-  },
-  {
-    description: 'A Speichern unter VS',
-    shortcut: ['Cmd', 'Shift', 'a']
-  },
-  {
-    description: 'B Speichern',
-    shortcut: ['Cmd', 'b']
-  },
-  {
-    description: 'B Speichern unter',
-    shortcut: ['Cmd', 'Shift', 'b']
-  },
-  {
-    description: 'C Speichern',
+    description: 'Kopieren',
     shortcut: ['Cmd', 'c']
   },
   {
-    description: 'C Speichern unter',
-    shortcut: ['Cmd', 'Shift', 'c']
+    description: 'Einfügen',
+    shortcut: ['Cmd', 'v']
+  },
+  {
+    description: 'Speichern',
+    shortcut: ['Cmd', 's']
+  },
+  {
+    description: 'Speichern unter',
+    shortcut: ['Shift', 'Cmd', 's']
+  },
+  {
+    description: 'Alles speichern',
+    shortcut: ['Alt', 'Cmd', 's']
+  },
+  {
+    description: 'Zeile löschen',
+    shortcut: ['Shift', 'Cmd', 'k']
+  },
+  {
+    description: 'Zeile unterhalb einfügen',
+    shortcut: ['Cmd', 'Enter']
+  },
+  {
+    description: 'Zeile oberhalb einfügen',
+    shortcut: ['Shift', 'Cmd', 'Enter']
+  },
+  {
+    description: 'Zeile nach oben verschieben',
+    shortcut: ['Alt', 'ArrowUp']
+  },
+  {
+    description: 'Zeile nach unten verschieben',
+    shortcut: ['Alt', 'ArrowDown']
+  },
+  {
+    description: 'Zeile nach unten kopieren',
+    shortcut: ['Shift', 'Alt', 'ArrowDown']
+  },
+  {
+    description: 'Zeile nach oben kopieren',
+    shortcut: ['Shift', 'Alt', 'ArrowUp']
+  },
+  {
+    description: 'Auswahl zur nächsten Übereinstimmungssuche hinzufügen',
+    shortcut: ['Cmd', 'd']
   }
 ];

@@ -1,34 +1,86 @@
 export default [
   {
-    description: 'S Speichern',
-    shortcut: ['Cmd', 's']
+    description: 'New Artboard',
+    shortcut: ['a']
   },
   {
-    description: 'S Speichern unter',
-    shortcut: ['Cmd', 'Shift', 's']
+    description: 'Slice',
+    shortcut: ['s']
   },
   {
-    description: 'A Speichern',
-    shortcut: ['Cmd', 'a']
+    description: 'Rectangle',
+    shortcut: ['r']
   },
   {
-    description: 'A Speichern unter',
-    shortcut: ['Cmd', 'Shift', 'a']
+    description: 'Rounded Rectangle',
+    shortcut: ['u']
   },
   {
-    description: 'B Speichern',
+    description: 'Oval',
+    shortcut: ['o']
+  },
+  {
+    description: 'Line',
+    shortcut: ['l']
+  },
+  {
+    description: 'Vector Point',
+    shortcut: ['v']
+  },
+  {
+    description: 'Pencil',
+    shortcut: ['p']
+  },
+  {
+    description: 'Text',
+    shortcut: ['t']
+  },
+  {
+    description: 'Bold',
     shortcut: ['Cmd', 'b']
   },
   {
-    description: 'B Speichern unter',
-    shortcut: ['Cmd', 'Shift', 'b']
+    description: 'Italic',
+    shortcut: ['Cmd', 'i']
   },
   {
-    description: 'C Speichern',
-    shortcut: ['Cmd', 'c']
+    description: 'Underline',
+    shortcut: ['Cmd', 'u']
   },
   {
-    description: 'C Speichern unter',
-    shortcut: ['Cmd', 'Shift', 'c']
+    description: 'Increase Font Size',
+    shortcut: ['Alt', 'Cmd', '+']
+  },
+  {
+    description: 'Decrease Font Size',
+    shortcut: ['Alt', 'Cmd', '-']
+  },
+  {
+    description: 'Increase Character Spacing',
+    shortcut: ['Alt', 'Cmd', 'l']
+  },
+  {
+    description: 'Decrease Character Spacing',
+    shortcut: ['Alt', 'Cmd', 't']
+  },
+  {
+    description: 'Change Font',
+    shortcut: ['Cmd', 't']
+  },
+  {
+    description: 'Convert to Outlines',
+    shortcut: ['Shift', 'Cmd', 'o']
+  },
+  {
+    description: 'Special Characters',
+    shortcut: ['Control', 'Cmd', 'Space']
+  },
+  {
+    description: 'Zoom in',
+    shortcut: ['Cmd', '+']
+  },
+  {
+    description: 'Zoom out',
+    shortcut: ['Cmd', '-']
   }
 ];
