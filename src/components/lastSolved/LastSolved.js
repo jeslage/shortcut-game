@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
-import timeFormat from '../../utils/timeFormat';
+import timeFormat from "../../utils/timeFormat";
 
-import Hint from '../hint/Hint';
-import StyledLastSolved from './LastSolved.style';
+import Hint from "../hint/Hint";
+import StyledLastSolved from "./LastSolved.style";
 
 const LastSolved = ({ timeList }) => {
   const lastSolvedShortcut = timeList[timeList.length - 1];

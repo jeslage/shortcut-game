@@ -1,9 +1,9 @@
-import React, { useContext, useRef } from 'react';
-import { SettingsContext } from '../../context/SettingsProvider';
+import React, { useContext, useRef } from "react";
+import { SettingsContext } from "../../context/SettingsProvider";
 
-import { VSCode, Sketch } from '../../icons/apps';
-import { Windows, Apple } from '../../icons/system';
-import StyledSettings from './Settings.style';
+import { VSCode, Sketch } from "../../icons/apps";
+import { Windows, Apple } from "../../icons/system";
+import StyledSettings from "./Settings.style";
 
 const Settings = () => {
   const {
@@ -41,83 +41,59 @@ const Settings = () => {
     <StyledSettings>
       <form>
         <label htmlFor="player">
-          Whats your name
           <input
             type="text"
-            placeholder="Name"
+            placeholder="Whats your name..."
             name="player"
             ref={input}
-            value={player ? player : ''}
+            value={player ? player : ""}
             onChange={e => setPlayer(e.target.value)}
             required
           />
         </label>
-        <fieldset className="settings__apps">
-          {registeredApps.map((app, index) => (
+
+        <div role="group" className="settings__apps">
+          {registeredApps.map(app => (
             <div className="settings__app">
-              <input
-                type="radio"
-                id={app}
-                name="app"
-                value={app}
-                defaultChecked={app === selectedApp}
-                onChange={e => updateSelectedApp(e.target.value)}
-              />
               <label htmlFor={app} key={app}>
-                {renderAppIcon()[app]}
+                <input
+                  type="radio"
+                  id={app}
+                  name="app"
+                  value={app}
+                  defaultChecked={app === selectedApp}
+                  onChange={e => updateSelectedApp(e.target.value)}
+                />
+                <div className="settings__app-icon">{renderAppIcon()[app]}</div>
               </label>
             </div>
           ))}
-        </fieldset>
-        <fieldset className="settings__systems">
+        </div>
+
+        <div role="group" className="settings__systems">
           {systems.map(system => (
             <div className="settings__system">
-              <input
-                type="radio"
-                id={system.name}
-                name="system"
-                value={system.name}
-                defaultChecked={system.checked}
-                disabled={system.disabled}
-              />
               <label htmlFor={system.name} key={system.name}>
-                {renderSystemIcon()[system.name]}
+                <input
+                  type="radio"
+                  id={system.name}
+                  name="system"
+                  value={system.name}
+                  defaultChecked={system.checked}
+                  disabled={system.disabled}
+                />
+                <div className="settings__system-icon">
+                  {renderSystemIcon()[system.name]}
+                </div>
               </label>
             </div>
           ))}
-        </fieldset>
-        <fieldset className="settings__levels">
-          <div className="settings__level">
-            <input
-              type="radio"
-              id="levelOne"
-              name="level"
-              value="1"
-              defaultChecked
-            />
-            <label htmlFor="levelOne">Anfänger</label>
-          </div>
+        </div>
 
-          <div className="settings__level">
-            <input type="radio" id="levelTwo" name="level" value="2" disabled />
-            <label htmlFor="levelTwo">Profi</label>
-          </div>
-
-          <div className="settings__level">
-            <input
-              type="radio"
-              id="levelThree"
-              name="level"
-              value="3"
-              disabled
-            />
-            <label htmlFor="levelThree">Master</label>
-          </div>
-        </fieldset>
         <button
           type="button"
           onClick={startGame}
-          onKeyDown={e => (e.key === 'Enter' ? startGame(e) : '')}
+          onKeyDown={e => (e.key === "Enter" ? startGame(e) : "")}
         >
           Start
         </button>

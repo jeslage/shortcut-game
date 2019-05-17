@@ -1,17 +1,17 @@
-import React, { useContext } from 'react';
-import isEqual from 'lodash.isequal';
+import React, { useContext } from "react";
+import isEqual from "lodash.isequal";
 
 import {
   SettingsContext,
   getRandomShortcut
-} from '../../context/SettingsProvider';
+} from "../../context/SettingsProvider";
 
-import { useWindowEvent } from '../../utils/hooks';
-import getKeyName from '../../utils/getKeyName';
+import { useWindowEvent } from "../../utils/hooks";
+import getKeyName from "../../utils/getKeyName";
 
-import Hint from '../hint/Hint';
+import Hint from "../hint/Hint";
 
-import StyledShortcuts from './Shortcuts.style.js';
+import StyledShortcuts from "./Shortcuts.style.js";
 
 const Shortcuts = ({ addShortcutTime, stopTimer, resetTimer }) => {
   const {
@@ -24,8 +24,8 @@ const Shortcuts = ({ addShortcutTime, stopTimer, resetTimer }) => {
     round
   } = useContext(SettingsContext);
 
-  useWindowEvent('keydown', e => handleKeyDown(e));
-  useWindowEvent('keyup', e => handleKeyUp(e));
+  useWindowEvent("keydown", e => handleKeyDown(e));
+  useWindowEvent("keyup", e => handleKeyUp(e));
 
   // Make empty array for pressed keys to compare arrays
   let pressedKeys = [];
@@ -36,7 +36,7 @@ const Shortcuts = ({ addShortcutTime, stopTimer, resetTimer }) => {
     const key = getKeyName(e.key);
 
     // Escape for quitting game
-    if (key === 'Escape') {
+    if (key === "Escape") {
       stopTimer();
       resetTimer();
       setRound(0);

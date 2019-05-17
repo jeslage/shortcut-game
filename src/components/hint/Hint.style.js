@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
 const StyledHint = styled.div`
   display: flex;
@@ -23,17 +23,10 @@ const StyledKey = styled.div`
   width: 60px;
 
   ${props =>
-    props.hidden &&
-    css`
-      background: #fff;
-      color: #000;
-    `}
-
-  ${props =>
-    (props.keyName === 'Cmd' ||
-      props.keyName === 'Shift' ||
-      props.keyName === 'Control' ||
-      props.keyName === 'Alt') &&
+    (props.keyName === "Cmd" ||
+      props.keyName === "Shift" ||
+      props.keyName === "Control" ||
+      props.keyName === "Alt") &&
     css`
       align-items: flex-end;
       justify-content: flex-start;
@@ -42,7 +35,7 @@ const StyledKey = styled.div`
     `}
 
   ${props =>
-    props.keyName === 'Space' &&
+    props.keyName === "Space" &&
     css`
       width: 180px;
     `}
