@@ -2,8 +2,9 @@ import React, { useContext } from 'react';
 import { TimerContext } from '../context/TimerProvider';
 
 import Shortcuts from '../components/shortcuts/Shortcuts';
-import TimeList from '../components/timeList/TimeList';
+
 import Timer from '../components/timer/Timer';
+import LastSolved from '../components/lastSolved/LastSolved';
 
 const Game = () => {
   const { timeList, stopTimer, resetTimer, addShortcutTime } = useContext(
@@ -19,7 +20,7 @@ const Game = () => {
         resetTimer={resetTimer}
       />
 
-      <TimeList timeList={timeList} />
+      <LastSolved timeList={timeList} />
     </>
   );
 };

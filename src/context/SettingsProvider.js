@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import uuidv4 from "uuid/v4";
 
-import config from '../config/index';
+import config from "../config/index";
 
 export const SettingsContext = React.createContext();
 
@@ -18,39 +19,45 @@ const SettingsProvider = ({ children }) => {
   const [view, setView] = useState(1);
   const [player, setPlayer] = useState();
   const [round, setRound] = useState(0);
+  const playerId = uuidv4();
 
   const [selectedApp, setSelectedApp] = useState(applications[0]);
 
-  const firstShortcut = getRandomShortcut(shortcuts[selectedApp]);
-
-  const [currentShortcut, setCurrentShortcut] = useState(firstShortcut);
-  const [availableShortcuts, setAvailableShortcuts] = useState(
-    removeFromShortcuts(shortcuts[selectedApp], firstShortcut)
-  );
+  const [currentShortcut, setCurrentShortcut] = useState();
+  const [availableShortcuts, setAvailableShortcuts] = useState();
 
   const removeFromAvailableShortcuts = (arr, shortcut) => {
     setAvailableShortcuts(removeFromShortcuts(arr, shortcut));
   };
 
+  const setShortcuts = () => {
+    const firstShortcut = getRandomShortcut(shortcuts[selectedApp]);
+
+    setCurrentShortcut(firstShortcut);
+    setAvailableShortcuts(
+      removeFromShortcuts(shortcuts[selectedApp], firstShortcut)
+    );
+  };
+
   const updateSelectedApp = app => {
     setSelectedApp(app);
-
-    const firstShortcut = getRandomShortcut(shortcuts[app]);
-    setCurrentShortcut(firstShortcut);
-    setAvailableShortcuts(removeFromShortcuts(shortcuts[app], firstShortcut));
+    setShortcuts();
   };
+
   return (
     <SettingsContext.Provider
       value={{
         registeredApps: applications,
         currentShortcut,
         setCurrentShortcut,
+        setShortcuts,
         availableShortcuts,
         removeFromAvailableShortcuts,
         view,
         selectedApp,
         systems,
         player,
+        playerId,
         round,
         setRound,
         setPlayer,

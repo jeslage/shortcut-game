@@ -1,15 +1,17 @@
-import React, { useContext } from 'react';
+import React, { useEffect } from 'react';
 
-import { SettingsContext } from '../../context/SettingsProvider';
 import { StyledHint, StyledKey } from './Hint.style.js';
 
-const Hint = () => {
-  const { currentShortcut } = useContext(SettingsContext);
-  const { shortcut } = currentShortcut;
+const Hint = ({ shortcut, pressedKeys, hidden }) => {
+  let keys = [];
+  useEffect(() => {
+    keys = pressedKeys;
+    console.log(keys);
+  });
   return (
     <StyledHint>
       {shortcut.map(key => (
-        <StyledKey key={key} keyName={key}>
+        <StyledKey key={key} keyName={key} hidden={hidden}>
           <span>{key}</span>
         </StyledKey>
       ))}

@@ -64,10 +64,6 @@ export default [
     shortcut: ['Alt', 'Cmd', 't']
   },
   {
-    description: 'Change Font',
-    shortcut: ['Cmd', 't']
-  },
-  {
     description: 'Convert to Outlines',
     shortcut: ['Shift', 'Cmd', 'o']
   },

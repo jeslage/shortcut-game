@@ -11,6 +11,8 @@ import getKeyName from '../../utils/getKeyName';
 
 import Hint from '../hint/Hint';
 
+import StyledShortcuts from './Shortcuts.style.js';
+
 const Shortcuts = ({ addShortcutTime, stopTimer, resetTimer }) => {
   const {
     currentShortcut,
@@ -37,7 +39,8 @@ const Shortcuts = ({ addShortcutTime, stopTimer, resetTimer }) => {
     if (key === 'Escape') {
       stopTimer();
       resetTimer();
-      setView(prev => prev - 1);
+      setRound(0);
+      setView(1);
     }
 
     // Check if key is already in array, if not add it
@@ -69,10 +72,12 @@ const Shortcuts = ({ addShortcutTime, stopTimer, resetTimer }) => {
   };
 
   return (
-    <>
-      <h2 className="Shortcuts">{currentShortcut.description}</h2>
-      <Hint />
-    </>
+    <StyledShortcuts>
+      <h2>{currentShortcut.description}</h2>
+      <div className="Shortcuts__hint">
+        <Hint shortcut={currentShortcut.shortcut} hidden />
+      </div>
+    </StyledShortcuts>
   );
 };
 
