@@ -33,14 +33,18 @@ const StyledSettings = styled.div`
     border-right: 5px solid black;
     padding: 0;
 
+    label[for="player"] {
+      width: 100%;
+    }
+
     input[type="text"] {
       display: block;
       width: calc(100% - 40px);
       padding: 20px;
       border: none;
-      font-size: 5rem;
-      font-weight: bold;
       text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
     }
   }
 
@@ -50,7 +54,11 @@ const StyledSettings = styled.div`
     text-transform: uppercase;
 
     input[type="radio"] {
-      display: none;
+      position: absolute;
+      height: 1px;
+      width: 1px;
+      overflow: hidden;
+      clip: rect(1px, 1px, 1px, 1px);
 
       &:checked ~ h4 {
         background: #000;
@@ -70,11 +78,11 @@ const StyledSettings = styled.div`
 
   button {
     outline: none;
+    font-size: 2rem;
+    font-weight: bold;
     border: none;
     border: 5px solid #000;
     width: 100%;
-    font-size: 5rem;
-    font-weight: bold;
     padding: 20px;
     text-transform: uppercase;
     cursor: pointer;

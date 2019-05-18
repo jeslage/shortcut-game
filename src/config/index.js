@@ -24,8 +24,7 @@ export default {
       name: "junior"
     },
     {
-      name: "intermediate",
-      disabled: true
+      name: "intermediate"
     },
     {
       name: "senior",
