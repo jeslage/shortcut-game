@@ -14,13 +14,15 @@ const Results = ({ results, time }) => {
   const playerResult = results.find(result => result.playerId === playerId);
 
   useEffect(() => {
-    const { offsetTop } = currentPlayerRef.current;
-    containerRef.current.scrollTo(offsetTop - 50, 0);
+    if (currentPlayerRef.current) {
+      const { offsetTop } = currentPlayerRef.current;
+      containerRef.current.scrollTop = offsetTop - 50;
+    }
   });
 
   return (
-    <StyledResults ref={containerRef}>
-      <div className="results__wrapper">
+    <StyledResults>
+      <div className="results__wrapper" ref={containerRef}>
         <table>
           <thead>
             <tr className="results__sticky">
