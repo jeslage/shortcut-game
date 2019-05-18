@@ -27,6 +27,7 @@ const Results = ({ results, time }) => {
         <tbody>
           {results.map((result, index) => (
             <tr
+              key={playerId}
               className={
                 playerId === result.playerId ? "Results__current-player" : null
               }

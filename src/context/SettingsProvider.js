@@ -14,7 +14,7 @@ export const removeFromShortcuts = (arr, shortcut) => {
 };
 
 const SettingsProvider = ({ children }) => {
-  const { applications, shortcuts, systems } = config;
+  const { applications, shortcuts, systems, levels } = config;
 
   const [view, setView] = useState(1);
   const [player, setPlayer] = useState();
@@ -22,6 +22,7 @@ const SettingsProvider = ({ children }) => {
   const playerId = uuidv4();
 
   const [selectedApp, setSelectedApp] = useState(applications[0]);
+  const [selectedLevel, setSelectedLevel] = useState(levels[0].name);
 
   const [currentShortcut, setCurrentShortcut] = useState();
   const [availableShortcuts, setAvailableShortcuts] = useState();
@@ -48,6 +49,7 @@ const SettingsProvider = ({ children }) => {
     <SettingsContext.Provider
       value={{
         registeredApps: applications,
+        registeredLevels: levels,
         currentShortcut,
         setCurrentShortcut,
         setShortcuts,
@@ -56,11 +58,13 @@ const SettingsProvider = ({ children }) => {
         view,
         selectedApp,
         systems,
+        selectedLevel,
         player,
         playerId,
         round,
         setRound,
         setPlayer,
+        setSelectedLevel,
         setView,
         updateSelectedApp
       }}

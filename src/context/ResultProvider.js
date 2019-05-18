@@ -5,7 +5,9 @@ import * as firebase from "firebase";
 export const ResultContext = React.createContext();
 
 const ResultProvider = ({ children }) => {
-  const { playerId, player, selectedApp, round } = useContext(SettingsContext);
+  const { playerId, player, selectedApp, selectedLevel, round } = useContext(
+    SettingsContext
+  );
 
   const [results, setResults] = useState([]);
   const [fetchedResults, setFetchedResults] = useState(false);
@@ -39,8 +41,8 @@ const ResultProvider = ({ children }) => {
       const result = {
         playerId,
         date: Date.now(),
-        mode: "speed",
         player,
+        level: selectedLevel,
         playedRounds: round,
         endTime: time,
         solvedShortcuts: timeList

@@ -18,5 +18,18 @@ export default {
       checked: false,
       disabled: true
     }
+  ],
+  levels: [
+    {
+      name: "junior"
+    },
+    {
+      name: "intermediate",
+      disabled: true
+    },
+    {
+      name: "senior",
+      disabled: true
+    }
   ]
 };

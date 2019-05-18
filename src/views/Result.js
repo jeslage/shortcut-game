@@ -18,7 +18,7 @@ const Result = () => {
     getResultsFromDatabase();
   }, []);
 
-  return fetchedResults ? <Results results={results} /> : <h2>WAAAIT</h2>;
+  return fetchedResults ? <Results results={results} /> : <h2>LOADING</h2>;
 };
 
 export default Result;

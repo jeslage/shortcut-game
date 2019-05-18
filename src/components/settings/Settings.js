@@ -12,8 +12,11 @@ const Settings = () => {
     updateSelectedApp,
     selectedApp,
     systems,
+    registeredLevels,
     registeredApps,
     setView,
+    selectedLevel,
+    setSelectedLevel,
     setShortcuts
   } = useContext(SettingsContext);
 
@@ -27,34 +30,29 @@ const Settings = () => {
     }
   };
 
-  const renderAppIcon = () => ({
-    sketch: <Sketch />,
-    vscode: <VSCode />
-  });
-
-  const renderSystemIcon = () => ({
-    win: <Windows />,
-    osx: <Apple />
-  });
-
   return (
     <StyledSettings>
       <form>
-        <label htmlFor="player">
-          <input
-            type="text"
-            placeholder="Whats your name..."
-            name="player"
-            ref={input}
-            value={player ? player : ""}
-            onChange={e => setPlayer(e.target.value)}
-            required
-          />
-        </label>
+        <h3>Player</h3>
 
-        <div role="group" className="settings__apps">
+        <div role="group" className="settings__wrapper">
+          <label htmlFor="player">
+            <input
+              type="text"
+              name="player"
+              ref={input}
+              value={player ? player : ""}
+              onChange={e => setPlayer(e.target.value)}
+              required
+            />
+          </label>
+        </div>
+
+        <h3>Application</h3>
+
+        <div role="group" className="settings__wrapper">
           {registeredApps.map(app => (
-            <div className="settings__app">
+            <div className="settings__entry">
               <label htmlFor={app} key={app}>
                 <input
                   type="radio"
@@ -64,15 +62,17 @@ const Settings = () => {
                   defaultChecked={app === selectedApp}
                   onChange={e => updateSelectedApp(e.target.value)}
                 />
-                <div className="settings__app-icon">{renderAppIcon()[app]}</div>
+                <h4>{app}</h4>
               </label>
             </div>
           ))}
         </div>
 
-        <div role="group" className="settings__systems">
+        <h3>System</h3>
+
+        <div role="group" className="settings__wrapper">
           {systems.map(system => (
-            <div className="settings__system">
+            <div className="settings__entry">
               <label htmlFor={system.name} key={system.name}>
                 <input
                   type="radio"
@@ -82,9 +82,28 @@ const Settings = () => {
                   defaultChecked={system.checked}
                   disabled={system.disabled}
                 />
-                <div className="settings__system-icon">
-                  {renderSystemIcon()[system.name]}
-                </div>
+                <h4>{system.name}</h4>
+              </label>
+            </div>
+          ))}
+        </div>
+
+        <h3>Level</h3>
+
+        <div role="group" className="settings__wrapper">
+          {registeredLevels.map(level => (
+            <div className="settings__entry" key={level.name}>
+              <label htmlFor={level.name} key={level.name}>
+                <input
+                  type="radio"
+                  id={level.name}
+                  name="level"
+                  value={level.name}
+                  defaultChecked={level.name === selectedLevel}
+                  disabled={level.disabled}
+                  onChange={e => setSelectedLevel(e.target.value)}
+                />
+                <h4>{level.name}</h4>
               </label>
             </div>
           ))}
