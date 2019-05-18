@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import isEqual from "lodash.isequal";
 
 import {
@@ -28,7 +28,7 @@ const Shortcuts = ({ addShortcutTime, stopTimer, resetTimer }) => {
   useWindowEvent("keyup", e => handleKeyUp(e));
 
   // Make empty array for pressed keys to compare arrays
-  let pressedKeys = [];
+  const [pressedKeys, setPressedKeys] = useState([]);
 
   const handleKeyDown = e => {
     e.preventDefault();
@@ -43,39 +43,50 @@ const Shortcuts = ({ addShortcutTime, stopTimer, resetTimer }) => {
       setView(1);
     }
 
-    // Check if key is already in array, if not add it
+    // Workaround for async set state
+    let updatedKeys = pressedKeys;
+
+    // Check if key is already in state array, if not add it
     if (!pressedKeys.includes(key)) {
-      pressedKeys.push(key);
+      setPressedKeys(pressedKeys => [...pressedKeys, key]);
+      updatedKeys = [...pressedKeys, key];
     }
 
     // Check if pressed keys are equal to shortcut
-    if (isEqual(pressedKeys, currentShortcut.shortcut)) {
-      const newShortcut = getRandomShortcut(availableShortcuts);
-      const solvedRound = round + 1;
+    if (isEqual(updatedKeys, currentShortcut.shortcut)) {
+      // Set timeout to visibly show last key pressed
+      setTimeout(() => {
+        const newShortcut = getRandomShortcut(availableShortcuts);
+        const solvedRound = round + 1;
 
-      setRound(solvedRound);
-      addShortcutTime(currentShortcut);
-      setCurrentShortcut(newShortcut);
+        setRound(round + 1);
+        addShortcutTime(currentShortcut);
+        setCurrentShortcut(newShortcut);
 
-      removeFromAvailableShortcuts(availableShortcuts, newShortcut);
+        removeFromAvailableShortcuts(availableShortcuts, newShortcut);
 
-      if (solvedRound === 5) {
-        stopTimer();
-        setView(prev => prev + 1);
-      }
+        if (solvedRound === 5) {
+          stopTimer();
+          setView(prev => prev + 1);
+        }
+      }, 10);
     }
   };
 
   const handleKeyUp = e => {
     e.preventDefault();
-    pressedKeys = [];
+    setPressedKeys([]);
   };
 
   return (
     <StyledShortcuts>
       <h2>{currentShortcut.description}</h2>
       <div className="Shortcuts__hint">
-        <Hint shortcut={currentShortcut.shortcut} hidden />
+        <Hint
+          shortcut={currentShortcut.shortcut}
+          pressedKeys={pressedKeys}
+          hidden
+        />
       </div>
     </StyledShortcuts>
   );

@@ -1,8 +1,6 @@
-import React from 'react';
-import Settings from '../components/settings/Settings';
+import React from "react";
+import Settings from "../components/settings/Settings";
 
-const Start = () => {
-  return <Settings />;
-};
+const Start = () => <Settings />;
 
 export default Start;

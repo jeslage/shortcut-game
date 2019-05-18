@@ -1,22 +1,22 @@
-import sketch from './shortcuts/sketch';
-import vscode from './shortcuts/vscode';
+import sketch from "./shortcuts/sketch";
+import vscode from "./shortcuts/vscode";
 
 export default {
-  applications: ['sketch', 'vscode'],
+  applications: ["sketch", "vscode"],
+  shortcuts: {
+    sketch,
+    vscode
+  },
   systems: [
     {
-      name: 'osx',
+      name: "osx",
       checked: true,
       disabled: false
     },
     {
-      name: 'win',
+      name: "win",
       checked: false,
       disabled: true
     }
-  ],
-  shortcuts: {
-    sketch,
-    vscode
-  }
+  ]
 };

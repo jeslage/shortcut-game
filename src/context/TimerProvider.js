@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 function getDefaultState() {
   return {
@@ -22,8 +22,8 @@ class TimerProvider extends Component {
       () => {
         this.timerRef = setInterval(() => {
           const { time } = this.state;
-          this.setState({ time: time + 100 });
-        }, 100);
+          this.setState({ time: time + 10 });
+        }, 10);
       }
     );
   };

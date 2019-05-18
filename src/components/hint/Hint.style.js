@@ -45,6 +45,12 @@ const StyledKey = styled.div`
     font-weight: bold;
     line-height: 1;
     padding: 5px;
+
+    ${props =>
+      props.hidden &&
+      css`
+        display: none;
+      `}
   }
 `;
 
