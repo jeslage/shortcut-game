@@ -49,7 +49,7 @@ const SettingsProvider = ({ children }) => {
   const resetSettings = () => {
     setSettings(state => ({
       ...state,
-      playerId: uuidv4,
+      playerId: uuidv4(),
       round: 0,
       view: 1
     }));

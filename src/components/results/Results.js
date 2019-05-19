@@ -10,9 +10,11 @@ import CircleIcon from "../../icons/circle";
 
 const Results = () => {
   const {
-    settings: { playerId }
+    settings: { playerId },
+    resetSettings,
+    setSettings
   } = useContext(SettingsContext);
-  const { time, timeList } = useContext(TimerContext);
+  const { resetTimer, time, timeList } = useContext(TimerContext);
   const {
     results,
     fetchedResults,
@@ -25,6 +27,15 @@ const Results = () => {
 
   // const place = results.findIndex(result => result.playerId === playerId) + 1;
   // const playerResult = results.find(result => result.playerId === playerId);
+
+  const handleRetry = () => {
+    resetTimer();
+    resetSettings();
+    setSettings(state => ({
+      ...state,
+      view: 1
+    }));
+  };
 
   useEffect(() => {
     addResultToDatabase(time, timeList);
@@ -85,6 +96,9 @@ const Results = () => {
           </div>
         )}
       </div>
+      <button type="button" onClick={() => handleRetry()}>
+        Retry
+      </button>
     </StyledResults>
   );
 };

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const StyledResults = styled.div`
   position: relative;
+  height: calc(100vh - 240px);
   padding: 0;
   font-weight: bold;
   font-size: 1.5rem;
@@ -33,7 +34,7 @@ const StyledResults = styled.div`
   .results__wrapper {
     position: relative;
     z-index: 1;
-    height: calc(100vh - 240px);
+    height: calc(100% - 78px);
     overflow: scroll;
     border: 5px solid black;
     background: #fff;
@@ -100,6 +101,29 @@ const StyledResults = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  button {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    outline: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: none;
+    border: 5px solid #000;
+    width: 100%;
+    padding: 20px;
+    text-transform: uppercase;
+    cursor: pointer;
+    z-index: 2;
+
+    &:hover,
+    &:focus,
+    &:disabled {
+      background: #000;
+      color: #fff;
+    }
   }
 `;
 
