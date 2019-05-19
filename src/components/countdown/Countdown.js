@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { SettingsContext } from "../../context/SettingsProvider";
 import { TimerContext } from "../../context/TimerProvider";
-import StyledCountdown from "./Countdown.style";
 
 const Countdown = () => {
   const [paused, setPaused] = useState(false);
@@ -18,7 +17,7 @@ const Countdown = () => {
 
     if (time.seconds === 0) {
       setOver(true);
-      setView(3);
+      setView(2);
       startTimer();
     } else {
       setTime({
@@ -41,12 +40,12 @@ const Countdown = () => {
   });
 
   return (
-    <StyledCountdown>
-      {time.seconds === 0 && <h2>Go!</h2>}
-      {time.seconds === 1 && <h2>1</h2>}
-      {time.seconds === 2 && <h2>2</h2>}
-      {time.seconds === 3 && <h2>3</h2>}
-    </StyledCountdown>
+    <>
+      {time.seconds === 0 && <span>Good Luck!</span>}
+      {time.seconds === 1 && <span>1</span>}
+      {time.seconds === 2 && <span>2</span>}
+      {time.seconds === 3 && <span>3</span>}
+    </>
   );
 };
 

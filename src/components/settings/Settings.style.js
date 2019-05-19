@@ -1,48 +1,75 @@
 import styled from "styled-components";
 
 const StyledSettings = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
+  max-width: 800px;
+  margin: 100px auto;
 
-  svg {
-    width: 50px;
-    height: 50px;
+  &:after,
+  &:before {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    max-width: 800px;
+    content: "";
+  }
+
+  &:before {
+    top: 60px;
+    left: 50px;
+    background: #f4f4f4;
+  }
+
+  &:after {
+    top: 30px;
+    left: 20px;
+    border: 5px solid #000;
   }
 
   form {
     width: 100%;
-    max-width: 800px;
-    margin: 120px auto;
+    position: relative;
+    background: #fff;
+    z-index: 1;
 
     h3 {
       text-transform: uppercase;
-      text-align: center;
       border: 5px solid black;
       margin: 0;
-      padding: 20px;
+      padding: 20px 30px;
     }
   }
 
   .settings__wrapper {
     display: flex;
+    flex-wrap: wrap;
     margin: 0;
     border-left: 5px solid black;
     border-right: 5px solid black;
     padding: 0;
 
     label[for="player"] {
+      position: relative;
       width: 100%;
+
+      svg {
+        position: absolute;
+        right: 30px;
+        top: 8px;
+      }
     }
 
     input[type="text"] {
       display: block;
-      width: calc(100% - 40px);
-      padding: 20px;
+      width: calc(100% - 60px);
+      padding: 20px 30px;
       border: none;
-      text-align: center;
       font-size: 2rem;
       font-weight: bold;
     }
@@ -50,7 +77,6 @@ const StyledSettings = styled.div`
 
   .settings__entry {
     width: 50%;
-    text-align: center;
     text-transform: uppercase;
 
     input[type="radio"] {
@@ -60,9 +86,8 @@ const StyledSettings = styled.div`
       overflow: hidden;
       clip: rect(1px, 1px, 1px, 1px);
 
-      &:checked ~ h4 {
-        background: #000;
-        color: #fff;
+      &:checked ~ h4 svg {
+        display: block;
       }
 
       &:disabled ~ h4 {
@@ -71,8 +96,26 @@ const StyledSettings = styled.div`
     }
 
     h4 {
-      padding: 50px;
+      position: relative;
+      padding: 30px 30px 30px 90px;
       margin: 0;
+
+      &:before {
+        position: absolute;
+        top: 25px;
+        left: 30px;
+        width: 25px;
+        height: 25px;
+        border: 5px solid #000;
+        content: "";
+      }
+
+      svg {
+        position: absolute;
+        top: 10px;
+        left: 25px;
+        display: none;
+      }
     }
   }
 
@@ -87,7 +130,8 @@ const StyledSettings = styled.div`
     text-transform: uppercase;
     cursor: pointer;
 
-    &:hover {
+    &:hover,
+    &:disabled {
       background: #000;
       color: #fff;
     }
