@@ -36,6 +36,7 @@ const StyledResults = styled.div`
     height: calc(100vh - 240px);
     overflow: scroll;
     border: 5px solid black;
+    background: #fff;
   }
 
   .results__place {
@@ -71,10 +72,6 @@ const StyledResults = styled.div`
 
   tbody tr {
     border-bottom: 5px solid black;
-
-    &:last-of-type {
-      border-bottom: none;
-    }
   }
 
   tbody td {

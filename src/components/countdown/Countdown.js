@@ -1,24 +1,18 @@
-import React, { useState, useEffect, useContext } from "react";
-import { SettingsContext } from "../../context/SettingsProvider";
-import { TimerContext } from "../../context/TimerProvider";
+import React, { useState, useEffect } from "react";
 
-const Countdown = () => {
+const Countdown = ({ onEnd }) => {
   const [paused, setPaused] = useState(false);
   const [over, setOver] = useState(false);
   const [time, setTime] = useState({
     seconds: 3
   });
 
-  const { setView } = useContext(SettingsContext);
-  const { startTimer } = useContext(TimerContext);
-
   const updateCountdown = () => {
     if (paused || over) return;
 
     if (time.seconds === 0) {
       setOver(true);
-      setView(2);
-      startTimer();
+      onEnd();
     } else {
       setTime({
         seconds: time.seconds - 1

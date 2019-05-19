@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 
 const StyledHint = styled.div`
   display: flex;
+  height: 60px;
   justify-content: center;
   align-items: flex-start;
   margin: 20px 0;
@@ -9,10 +10,7 @@ const StyledHint = styled.div`
 
 const StyledKey = styled.div`
   align-items: center;
-  background: #141414;
-  color: #fff;
-  border-radius: 10px;
-  border: 4px solid #000;
+  border: 5px solid #000;
   display: inline-flex;
   height: 60px;
   justify-content: center;
@@ -40,6 +38,13 @@ const StyledKey = styled.div`
       width: 180px;
     `}
 
+  ${props =>
+    props.hidden &&
+    props.level !== "junior" &&
+    css`
+      display: none;
+    `}
+
   span {
     display: block;
     font-weight: bold;
@@ -48,6 +53,7 @@ const StyledKey = styled.div`
 
     ${props =>
       props.hidden &&
+      props.level === "junior" &&
       css`
         display: none;
       `}

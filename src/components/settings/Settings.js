@@ -1,5 +1,6 @@
 import React, { useState, useContext, useRef } from "react";
 import { SettingsContext } from "../../context/SettingsProvider";
+import { TimerContext } from "../../context/TimerProvider";
 
 import StyledSettings from "./Settings.style";
 import CrossIcon from "../../icons/cross";
@@ -20,20 +21,32 @@ const Settings = () => {
     setSelectedLevel,
     setShortcuts
   } = useContext(SettingsContext);
+  const { startTimer } = useContext(TimerContext);
 
   const [mistake, setMistake] = useState(false);
   const [countdown, setCountdown] = useState(false);
 
   const input = useRef();
 
-  const startGame = () => {
+  const handlePlayerChange = e => {
+    if (mistake) setMistake(false);
+    setPlayer(e.target.value);
+  };
+
+  const startCountdown = () => {
     if (input.current.checkValidity()) {
       setPlayer(input.current.value);
       setShortcuts();
       setCountdown(true);
     } else {
       setMistake(true);
+      input.current.focus();
     }
+  };
+
+  const startGame = () => {
+    setView(2);
+    startTimer();
   };
 
   return (
@@ -48,8 +61,7 @@ const Settings = () => {
               name="player"
               ref={input}
               value={player ? player : ""}
-              onFocus={() => (mistake ? setMistake(false) : "")}
-              onChange={e => setPlayer(e.target.value)}
+              onChange={e => handlePlayerChange(e)}
               disabled={countdown}
               required
             />
@@ -130,11 +142,11 @@ const Settings = () => {
 
         <button
           type="button"
-          onClick={startGame}
-          onKeyDown={e => (e.key === "Enter" ? startGame(e) : "")}
+          onClick={startCountdown}
+          onKeyDown={e => (e.key === "Enter" ? startCountdown(e) : "")}
           disabled={countdown}
         >
-          {countdown ? <Countdown /> : "Start Test"}
+          {countdown ? <Countdown onEnd={() => startGame()} /> : "Start Test"}
         </button>
       </form>
     </StyledSettings>

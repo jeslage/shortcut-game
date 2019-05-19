@@ -1,19 +1,43 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const StyledLastSolved = styled.div`
   position: absolute;
-  bottom: 0;
-  left: 0;
+  bottom: 30px;
+  left: 30px;
+  max-width: 400px;
   width: 100%;
-  margin: 0 auto;
-  text-align: left;
-  display: flex;
   border: 5px solid black;
-  border-left: none;
   border-bottom: none;
 
-  .LastSolved__container {
-    display: flex;
+  thead th {
+    text-transform: uppercase;
+    padding: 10px;
+    text-align: left;
+    border-bottom: 5px solid black;
+
+    &:first-of-type {
+      width: 20px;
+      text-align: center;
+    }
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  tbody tr {
+    border-bottom: 5px solid black;
+  }
+
+  tbody td {
+    padding: 20px 10px;
+
+    &:first-of-type {
+      font-weight: bold;
+      width: 20px;
+      text-align: center;
+    }
   }
 `;
 

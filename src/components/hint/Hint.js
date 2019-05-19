@@ -2,7 +2,7 @@ import React from "react";
 
 import { StyledHint, StyledKey } from "./Hint.style.js";
 
-const Hint = ({ shortcut, pressedKeys }) => {
+const Hint = ({ shortcut, pressedKeys, level }) => {
   return (
     <StyledHint>
       {shortcut.map(key => (
@@ -10,6 +10,7 @@ const Hint = ({ shortcut, pressedKeys }) => {
           key={key}
           keyName={key}
           hidden={pressedKeys && !pressedKeys.includes(key)}
+          level={level}
         >
           <span>{key}</span>
         </StyledKey>

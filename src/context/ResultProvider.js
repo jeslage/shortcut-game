@@ -27,7 +27,11 @@ const ResultProvider = ({ children }) => {
         id: key
       }));
 
-      const sortedResultsList = resultsList.sort((a, b) => {
+      const filteredResultsList = resultsList.filter(
+        result => result.level === selectedLevel
+      );
+
+      const sortedResultsList = filteredResultsList.sort((a, b) => {
         return a.endTime - b.endTime;
       });
 

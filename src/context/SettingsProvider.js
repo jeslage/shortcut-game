@@ -19,6 +19,22 @@ const SettingsProvider = ({ children }) => {
   const [view, setView] = useState(1);
   const [player, setPlayer] = useState();
   const [round, setRound] = useState(0);
+
+  // TODO: Move everything to one settings object
+  // const [settings, setSettings] = useState({
+  //   round: 0,
+  //   view: 1,
+  //   player: null,
+  //   playerId: uuidv4(),
+  //   selectedApp: applications[0],
+  //   selectedLevel: levels[0].name
+  // });
+
+  // const [appShortcuts, setAppShortcuts] = useState({
+  //   currentShortcut: null,
+  //   availableShortcuts: null
+  // });
+
   const playerId = uuidv4();
 
   const [selectedApp, setSelectedApp] = useState(applications[0]);

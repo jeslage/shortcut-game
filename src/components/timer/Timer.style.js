@@ -1,32 +1,21 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const StyledTimer = styled.div`
-  background: #fff;
-  font-size: 40px;
-  position: absolute;
-  top: 0;
   width: 100%;
+  font-size: 2rem;
   display: flex;
-  align-items: center;
-  border-bottom: 5px solid black;
+  justify-content: center;
+  margin-top: 30px;
 
   h3 {
-    padding: 20px;
-    width: calc(33.333% - 40px);
+    width: 100%;
+    max-width: 250px;
+    border: 5px solid black;
     margin: 0;
-  }
-
-  .shortcuts__clock {
-    text-align: center;
-  }
-
-  .shortcuts__player {
-    border-right: 5px solid black;
-  }
-
-  .shortcuts__round {
-    border-left: 5px solid black;
-    text-align: right;
+    padding: 20px 0;
+    background: #fff;
+    display: flex;
+    justify-content: center;
   }
 `;
 

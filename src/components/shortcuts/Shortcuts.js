@@ -82,15 +82,14 @@ const Shortcuts = ({ addShortcutTime, stopTimer, resetTimer }) => {
   return (
     <StyledShortcuts>
       <h2>{currentShortcut.description}</h2>
-      {selectedLevel === "junior" && (
-        <div className="Shortcuts__hint">
-          <Hint
-            shortcut={currentShortcut.shortcut}
-            pressedKeys={pressedKeys}
-            hidden
-          />
-        </div>
-      )}
+      <div className="Shortcuts__hint">
+        <Hint
+          shortcut={currentShortcut.shortcut}
+          pressedKeys={pressedKeys}
+          level={selectedLevel}
+          hidden
+        />
+      </div>
     </StyledShortcuts>
   );
 };
