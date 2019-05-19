@@ -8,7 +8,7 @@ const StyledSettings = styled.div`
   font-size: 1.5rem;
   font-weight: bold;
   max-width: 800px;
-  margin: 100px auto;
+  margin: 70px auto;
 
   &:after,
   &:before {
@@ -72,6 +72,10 @@ const StyledSettings = styled.div`
       border: none;
       font-size: 2rem;
       font-weight: bold;
+
+      &:focus {
+        outline: none;
+      }
     }
   }
 

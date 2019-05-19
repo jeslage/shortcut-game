@@ -2,7 +2,16 @@ import sketch from "./shortcuts/sketch";
 import vscode from "./shortcuts/vscode";
 
 export default {
-  applications: ["sketch", "vscode"],
+  applications: [
+    {
+      name: "Sketch",
+      id: "sketch"
+    },
+    {
+      name: "VS Code",
+      id: "vscode"
+    }
+  ],
   shortcuts: {
     sketch,
     vscode

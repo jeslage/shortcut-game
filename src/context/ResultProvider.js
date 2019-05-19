@@ -5,9 +5,8 @@ import * as firebase from "firebase";
 export const ResultContext = React.createContext();
 
 const ResultProvider = ({ children }) => {
-  const { playerId, player, selectedApp, selectedLevel, round } = useContext(
-    SettingsContext
-  );
+  const { settings } = useContext(SettingsContext);
+  const { playerId, player, selectedApp, selectedLevel, round } = settings;
 
   const [results, setResults] = useState([]);
   const [fetchedResults, setFetchedResults] = useState(false);

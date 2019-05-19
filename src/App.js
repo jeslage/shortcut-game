@@ -7,7 +7,8 @@ import Result from "./views/Result";
 import { SettingsContext } from "./context/SettingsProvider";
 
 const App = () => {
-  const { view } = useContext(SettingsContext);
+  const { settings } = useContext(SettingsContext);
+  const { view } = settings;
   return (
     <div className="App">
       {view === 1 && <Start />}

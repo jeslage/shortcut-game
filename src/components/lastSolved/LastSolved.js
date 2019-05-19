@@ -5,8 +5,7 @@ import timeFormat from "../../utils/timeFormat";
 import StyledLastSolved from "./LastSolved.style";
 
 const LastSolved = ({ timeList }) =>
-  timeList &&
-  timeList.length && (
+  timeList && timeList.length ? (
     <StyledLastSolved>
       <table>
         <thead>
@@ -27,6 +26,6 @@ const LastSolved = ({ timeList }) =>
         </tbody>
       </table>
     </StyledLastSolved>
-  );
+  ) : null;
 
 export default React.memo(LastSolved);

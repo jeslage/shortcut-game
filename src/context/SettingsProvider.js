@@ -16,73 +16,54 @@ export const removeFromShortcuts = (arr, shortcut) => {
 const SettingsProvider = ({ children }) => {
   const { applications, shortcuts, systems, levels } = config;
 
-  const [view, setView] = useState(1);
-  const [player, setPlayer] = useState();
-  const [round, setRound] = useState(0);
+  const [settings, setSettings] = useState({
+    round: 0,
+    view: 1,
+    player: null,
+    playerId: uuidv4(),
+    registeredSystems: systems,
+    registeredApps: applications,
+    selectedApp: applications[0].id,
+    registeredLevels: levels,
+    selectedLevel: levels[0].name
+  });
 
-  // TODO: Move everything to one settings object
-  // const [settings, setSettings] = useState({
-  //   round: 0,
-  //   view: 1,
-  //   player: null,
-  //   playerId: uuidv4(),
-  //   selectedApp: applications[0],
-  //   selectedLevel: levels[0].name
-  // });
+  const [appShortcuts, setAppShortcuts] = useState({
+    currentShortcut: null,
+    availableShortcuts: null
+  });
 
-  // const [appShortcuts, setAppShortcuts] = useState({
-  //   currentShortcut: null,
-  //   availableShortcuts: null
-  // });
-
-  const playerId = uuidv4();
-
-  const [selectedApp, setSelectedApp] = useState(applications[0]);
-  const [selectedLevel, setSelectedLevel] = useState(levels[0].name);
-
-  const [currentShortcut, setCurrentShortcut] = useState();
-  const [availableShortcuts, setAvailableShortcuts] = useState();
-
-  const removeFromAvailableShortcuts = (arr, shortcut) => {
-    setAvailableShortcuts(removeFromShortcuts(arr, shortcut));
-  };
-
-  const setShortcuts = () => {
+  const updateShortcuts = () => {
+    const { selectedApp } = settings;
     const firstShortcut = getRandomShortcut(shortcuts[selectedApp]);
 
-    setCurrentShortcut(firstShortcut);
-    setAvailableShortcuts(
-      removeFromShortcuts(shortcuts[selectedApp], firstShortcut)
-    );
+    setAppShortcuts({
+      currentShortcut: firstShortcut,
+      availableShortcuts: removeFromShortcuts(
+        shortcuts[selectedApp],
+        firstShortcut
+      )
+    });
   };
 
-  const updateSelectedApp = app => {
-    setSelectedApp(app);
-    setShortcuts();
+  const resetSettings = () => {
+    setSettings(state => ({
+      ...state,
+      playerId: uuidv4,
+      round: 0,
+      view: 1
+    }));
   };
 
   return (
     <SettingsContext.Provider
       value={{
-        registeredApps: applications,
-        registeredLevels: levels,
-        currentShortcut,
-        setCurrentShortcut,
-        setShortcuts,
-        availableShortcuts,
-        removeFromAvailableShortcuts,
-        view,
-        selectedApp,
-        systems,
-        selectedLevel,
-        player,
-        playerId,
-        round,
-        setRound,
-        setPlayer,
-        setSelectedLevel,
-        setView,
-        updateSelectedApp
+        setSettings,
+        resetSettings,
+        settings,
+        updateShortcuts,
+        appShortcuts,
+        setAppShortcuts
       }}
     >
       {children}

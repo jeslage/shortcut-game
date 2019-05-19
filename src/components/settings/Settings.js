@@ -8,35 +8,50 @@ import MistakeIcon from "../../icons/mistake";
 import Countdown from "../countdown/Countdown";
 
 const Settings = () => {
-  const {
-    setPlayer,
-    player,
-    updateSelectedApp,
-    selectedApp,
-    systems,
-    registeredLevels,
-    registeredApps,
-    setView,
-    selectedLevel,
-    setSelectedLevel,
-    setShortcuts
-  } = useContext(SettingsContext);
+  const { updateShortcuts, setSettings, settings } = useContext(
+    SettingsContext
+  );
   const { startTimer } = useContext(TimerContext);
+
+  const {
+    player,
+    selectedApp,
+    registeredApps,
+    registeredLevels,
+    selectedLevel,
+    registeredSystems
+  } = settings;
 
   const [mistake, setMistake] = useState(false);
   const [countdown, setCountdown] = useState(false);
 
   const input = useRef();
 
-  const handlePlayerChange = e => {
+  const handlePlayerChange = () => {
     if (mistake) setMistake(false);
-    setPlayer(e.target.value);
+
+    setSettings(state => ({
+      ...state,
+      player: input.current.value
+    }));
+  };
+
+  const handleLevelChange = level => {
+    setSettings(state => ({ ...state, selectedLevel: level }));
+  };
+
+  const handleAppChange = app => {
+    setSettings(state => ({ ...state, selectedApp: app }));
   };
 
   const startCountdown = () => {
     if (input.current.checkValidity()) {
-      setPlayer(input.current.value);
-      setShortcuts();
+      setSettings(state => ({
+        ...state,
+        player: input.current.value
+      }));
+
+      updateShortcuts();
       setCountdown(true);
     } else {
       setMistake(true);
@@ -45,7 +60,11 @@ const Settings = () => {
   };
 
   const startGame = () => {
-    setView(2);
+    setSettings(state => ({
+      ...state,
+      view: 2
+    }));
+
     startTimer();
   };
 
@@ -61,7 +80,7 @@ const Settings = () => {
               name="player"
               ref={input}
               value={player ? player : ""}
-              onChange={e => handlePlayerChange(e)}
+              onChange={() => handlePlayerChange()}
               disabled={countdown}
               required
             />
@@ -74,19 +93,19 @@ const Settings = () => {
         <div role="group" className="settings__wrapper">
           {registeredApps.map(app => (
             <div className="settings__entry">
-              <label htmlFor={app} key={app}>
+              <label htmlFor={app.id} key={app.id}>
                 <input
                   type="radio"
-                  id={app}
+                  id={app.id}
                   name="app"
-                  value={app}
-                  defaultChecked={app === selectedApp}
+                  value={app.id}
+                  defaultChecked={app.id === selectedApp}
                   disabled={countdown}
-                  onChange={e => updateSelectedApp(e.target.value)}
+                  onChange={e => handleAppChange(e.target.value)}
                 />
                 <h4>
                   <CrossIcon />
-                  <span>{app}</span>
+                  <span>{app.name}</span>
                 </h4>
               </label>
             </div>
@@ -96,7 +115,7 @@ const Settings = () => {
         <h3>System</h3>
 
         <div role="group" className="settings__wrapper">
-          {systems.map(system => (
+          {registeredSystems.map(system => (
             <div className="settings__entry">
               <label htmlFor={system.name} key={system.name}>
                 <input
@@ -129,7 +148,7 @@ const Settings = () => {
                   value={level.name}
                   defaultChecked={level.name === selectedLevel}
                   disabled={level.disabled || countdown}
-                  onChange={e => setSelectedLevel(e.target.value)}
+                  onChange={e => handleLevelChange(e.target.value)}
                 />
                 <h4>
                   <CrossIcon />

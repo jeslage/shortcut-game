@@ -3,7 +3,8 @@ import isEqual from "lodash.isequal";
 
 import {
   SettingsContext,
-  getRandomShortcut
+  getRandomShortcut,
+  removeFromShortcuts
 } from "../../context/SettingsProvider";
 
 import { useWindowEvent } from "../../utils/hooks";
@@ -15,15 +16,14 @@ import StyledShortcuts from "./Shortcuts.style.js";
 
 const Shortcuts = ({ addShortcutTime, stopTimer, resetTimer }) => {
   const {
-    currentShortcut,
-    setCurrentShortcut,
-    availableShortcuts,
-    removeFromAvailableShortcuts,
-    setView,
-    setRound,
-    selectedLevel,
-    round
+    appShortcuts,
+    setAppShortcuts,
+    settings,
+    setSettings,
+    resetSettings
   } = useContext(SettingsContext);
+  const { selectedLevel, round } = settings;
+  const { currentShortcut, availableShortcuts } = appShortcuts;
 
   useWindowEvent("keydown", e => handleKeyDown(e));
   useWindowEvent("keyup", e => handleKeyUp(e));
@@ -40,8 +40,7 @@ const Shortcuts = ({ addShortcutTime, stopTimer, resetTimer }) => {
     if (key === "Escape") {
       stopTimer();
       resetTimer();
-      setRound(0);
-      setView(1);
+      resetSettings();
     }
 
     // Workaround for async set state
@@ -55,20 +54,33 @@ const Shortcuts = ({ addShortcutTime, stopTimer, resetTimer }) => {
 
     // Check if pressed keys are equal to shortcut
     if (isEqual(updatedKeys, currentShortcut.shortcut)) {
-      // Set timeout to visibly show last key pressed
+      // Set minimal timeout to visibly show last key pressed
       setTimeout(() => {
         const newShortcut = getRandomShortcut(availableShortcuts);
         const solvedRound = round + 1;
 
-        setRound(round + 1);
-        addShortcutTime(currentShortcut);
-        setCurrentShortcut(newShortcut);
+        setSettings(state => ({
+          ...state,
+          round: state.round + 1
+        }));
 
-        removeFromAvailableShortcuts(availableShortcuts, newShortcut);
+        addShortcutTime(currentShortcut);
+
+        setAppShortcuts({
+          currentShortcut: newShortcut,
+          availableShortcuts: removeFromShortcuts(
+            availableShortcuts,
+            newShortcut
+          )
+        });
 
         if (solvedRound === 5) {
           stopTimer();
-          setView(prev => prev + 1);
+
+          setSettings(state => ({
+            ...state,
+            view: state.view + 1
+          }));
         }
       }, 10);
     }
