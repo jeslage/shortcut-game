@@ -35,7 +35,8 @@ const StyledResults = styled.div`
     position: relative;
     z-index: 1;
     height: calc(100% - 78px);
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
     border: 5px solid black;
     background: #fff;
   }
