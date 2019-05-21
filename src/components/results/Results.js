@@ -1,12 +1,12 @@
-import React, { useContext, useRef, useEffect } from "react";
+import React, { useContext, useRef, useEffect } from 'react';
 
-import timeFormat from "../../utils/timeFormat";
-import { SettingsContext } from "../../context/SettingsProvider";
-import { TimerContext } from "../../context/TimerProvider";
-import { ResultContext } from "../../context/ResultProvider";
+import timeFormat from '../../utils/timeFormat';
+import { SettingsContext } from '../../context/SettingsProvider';
+import { TimerContext } from '../../context/TimerProvider';
+import { ResultContext } from '../../context/ResultProvider';
 
-import StyledResults from "./Results.style";
-import CircleIcon from "../../icons/circle";
+import StyledResults from './Results.style';
+import CircleIcon from '../../icons/circle';
 
 const Results = () => {
   const {
@@ -17,7 +17,8 @@ const Results = () => {
   const { resetTimer, time, timeList } = useContext(TimerContext);
   const {
     results,
-    fetchedResults,
+    loadedResults,
+    setLoadedResults,
     getResultsFromDatabase,
     addResultToDatabase
   } = useContext(ResultContext);
@@ -40,6 +41,8 @@ const Results = () => {
   useEffect(() => {
     addResultToDatabase(time, timeList);
     getResultsFromDatabase();
+
+    return () => setLoadedResults(false);
   }, []);
 
   useEffect(() => {
@@ -47,12 +50,12 @@ const Results = () => {
       const { offsetTop } = currentPlayerRef.current;
       containerRef.current.scrollTop = offsetTop - 50;
     }
-  }, [fetchedResults]);
+  }, [loadedResults]);
 
   return (
     <StyledResults>
       <div className="results__wrapper" ref={containerRef}>
-        {fetchedResults ? (
+        {loadedResults ? (
           <table>
             <thead>
               <tr className="results__sticky">
@@ -71,7 +74,7 @@ const Results = () => {
                   <tr
                     key={result.playerId}
                     className={
-                      isCurrentPlayer ? "results__current-player" : null
+                      isCurrentPlayer ? 'results__current-player' : null
                     }
                     ref={isCurrentPlayer ? currentPlayerRef : null}
                   >
@@ -79,7 +82,7 @@ const Results = () => {
                       <span>{index + 1}.</span>
                       {isCurrentPlayer && <CircleIcon />}
                     </td>
-                    <td>{result.player || "undefined"}</td>
+                    <td>{result.player || 'undefined'}</td>
                     <td>{timeFormat(result.endTime)}</td>
                     <td>
                       {index > 0 &&

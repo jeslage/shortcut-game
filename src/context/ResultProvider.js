@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
-import { SettingsContext } from "./SettingsProvider";
-import * as firebase from "firebase";
+import React, { useContext, useState } from 'react';
+import { SettingsContext } from './SettingsProvider';
+import * as firebase from 'firebase';
 
 export const ResultContext = React.createContext();
 
@@ -9,16 +9,16 @@ const ResultProvider = ({ children }) => {
   const { playerId, player, selectedApp, selectedLevel, round } = settings;
 
   const [results, setResults] = useState([]);
-  const [fetchedResults, setFetchedResults] = useState(false);
+  const [loadedResults, setLoadedResults] = useState(false);
 
   const appResults = firebase
     .database()
     .ref()
-    .child("results")
+    .child('results')
     .child(selectedApp);
 
   const getResultsFromDatabase = () => {
-    appResults.on("value", snap => {
+    appResults.on('value', snap => {
       const resultsObject = snap.val();
 
       const resultsList = Object.keys(resultsObject).map(key => ({
@@ -35,7 +35,7 @@ const ResultProvider = ({ children }) => {
       });
 
       setResults(sortedResultsList);
-      setFetchedResults(true);
+      setLoadedResults(true);
     });
   };
 
@@ -61,7 +61,8 @@ const ResultProvider = ({ children }) => {
         results,
         addResultToDatabase,
         getResultsFromDatabase,
-        fetchedResults
+        loadedResults,
+        setLoadedResults
       }}
     >
       {children}
