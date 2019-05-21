@@ -1,42 +1,48 @@
-import sketch from "./shortcuts/sketch";
-import vscode from "./shortcuts/vscode";
+import sketch from './shortcuts/sketch';
+import vscode from './shortcuts/vscode';
+import photoshop from './shortcuts/photoshop';
 
 export default {
   applications: [
     {
-      name: "Sketch",
-      id: "sketch"
+      name: 'Sketch',
+      id: 'sketch'
     },
     {
-      name: "VS Code",
-      id: "vscode"
+      name: 'VS Code',
+      id: 'vscode'
+    },
+    {
+      name: 'Photoshop CC',
+      id: 'photoshop'
     }
   ],
   shortcuts: {
     sketch,
-    vscode
+    vscode,
+    photoshop
   },
   systems: [
     {
-      name: "osx",
+      name: 'osx',
       checked: true,
       disabled: false
     },
     {
-      name: "win",
+      name: 'win',
       checked: false,
       disabled: true
     }
   ],
   levels: [
     {
-      name: "junior"
+      name: 'junior'
     },
     {
-      name: "intermediate"
+      name: 'intermediate'
     },
     {
-      name: "senior",
+      name: 'senior',
       disabled: true
     }
   ]
