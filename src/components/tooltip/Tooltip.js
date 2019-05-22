@@ -5,12 +5,21 @@ import { useWindowEvent } from '../../utils/hooks';
 
 import StyledToolTip from './Tooltip.style.js';
 
-const ToolTip = ({ description }) => {
+const ToolTip = ({ description, disabled }) => {
   const contentRef = useRef(null);
   const triggerRef = useRef(null);
 
   const [visible, setVisible] = useState(false);
   const [position, setPosition] = useState('top');
+
+  const handleVisible = visible => {
+    if (disabled) {
+      setVisible(false);
+      return;
+    }
+
+    setVisible(visible);
+  };
 
   const handleScroll = () => {
     const { top } = triggerRef.current.getBoundingClientRect();
@@ -30,8 +39,8 @@ const ToolTip = ({ description }) => {
       <div
         ref={triggerRef}
         className="tooltip__trigger"
-        onMouseEnter={() => setVisible(true)}
-        onMouseLeave={() => setVisible(false)}
+        onMouseEnter={() => handleVisible(true)}
+        onMouseLeave={() => handleVisible(false)}
       >
         <span>?</span>
       </div>

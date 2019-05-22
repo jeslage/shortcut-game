@@ -77,9 +77,14 @@ const Settings = () => {
               />
               <h4>
                 <CrossIcon />
+
                 <span>{entry.name}</span>
+
                 {entry.description && (
-                  <ToolTip description={entry.description} />
+                  <ToolTip
+                    description={entry.description}
+                    disabled={countdown}
+                  />
                 )}
               </h4>
             </label>

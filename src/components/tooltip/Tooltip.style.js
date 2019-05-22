@@ -18,11 +18,6 @@ const StyledTooltip = styled.div`
     border-radius: 20px;
     width: 20px;
     height: 20px;
-
-    &:hover {
-      color: #ff0000;
-      border-color: #ff0000;
-    }
   }
 
   .tooltip__content {
