@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
-import throttle from 'lodash.throttle';
 
+import throttle from '../../utils/throttle';
 import { useWindowEvent } from '../../utils/hooks';
 
 import StyledToolTip from './Tooltip.style.js';
@@ -22,6 +22,7 @@ const ToolTip = ({ description, disabled }) => {
   };
 
   const handleScroll = () => {
+    console.log('scroll');
     const { top } = triggerRef.current.getBoundingClientRect();
     const { height } = contentRef.current.getBoundingClientRect();
 
@@ -32,7 +33,7 @@ const ToolTip = ({ description, disabled }) => {
     }
   };
 
-  useWindowEvent('scroll', throttle(handleScroll, 400));
+  useWindowEvent('scroll', throttle(handleScroll, 600));
 
   return (
     <StyledToolTip visible={visible} position={position}>
