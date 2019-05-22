@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const StyledSettings = styled.div`
   position: relative;
@@ -17,7 +17,7 @@ const StyledSettings = styled.div`
     height: 100%;
     background: #fff;
     max-width: 800px;
-    content: "";
+    content: '';
   }
 
   &:before {
@@ -54,7 +54,7 @@ const StyledSettings = styled.div`
     border-right: 5px solid black;
     padding: 0;
 
-    label[for="player"] {
+    label[for='player'] {
       position: relative;
       width: 100%;
 
@@ -65,7 +65,7 @@ const StyledSettings = styled.div`
       }
     }
 
-    input[type="text"] {
+    input[type='text'] {
       display: block;
       width: calc(100% - 60px);
       padding: 20px 30px;
@@ -81,9 +81,8 @@ const StyledSettings = styled.div`
 
   .settings__entry {
     width: 50%;
-    text-transform: uppercase;
 
-    input[type="radio"] {
+    input[type='radio'] {
       position: absolute;
       height: 1px;
       width: 1px;
@@ -101,6 +100,8 @@ const StyledSettings = styled.div`
 
     h4 {
       position: relative;
+      display: flex;
+      align-items: center;
       padding: 30px 30px 30px 90px;
       margin: 0;
 
@@ -111,7 +112,7 @@ const StyledSettings = styled.div`
         width: 25px;
         height: 25px;
         border: 5px solid #000;
-        content: "";
+        content: '';
       }
 
       svg {
@@ -119,6 +120,10 @@ const StyledSettings = styled.div`
         top: 10px;
         left: 25px;
         display: none;
+      }
+
+      span {
+        text-transform: uppercase;
       }
     }
   }

@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import uuidv4 from "uuid/v4";
+import React, { useState } from 'react';
+import uuidv4 from 'uuid/v4';
 
-import config from "../config/index";
+import config from '../config/index';
 
 export const SettingsContext = React.createContext();
 
@@ -14,7 +14,7 @@ export const removeFromShortcuts = (arr, shortcut) => {
 };
 
 const SettingsProvider = ({ children }) => {
-  const { applications, shortcuts, systems, levels } = config;
+  const { applications, shortcuts, systems, levels, modes } = config;
 
   const [settings, setSettings] = useState({
     round: 0,
@@ -22,10 +22,13 @@ const SettingsProvider = ({ children }) => {
     player: null,
     playerId: uuidv4(),
     registeredSystems: systems,
+    selectedSystem: systems[0].name,
     registeredApps: applications,
     selectedApp: applications[0].id,
     registeredLevels: levels,
-    selectedLevel: levels[0].name
+    selectedLevel: levels[0].name,
+    registeredModes: modes,
+    selectedMode: modes[0].name
   });
 
   const [appShortcuts, setAppShortcuts] = useState({

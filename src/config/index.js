@@ -6,7 +6,8 @@ export default {
   applications: [
     {
       name: 'Sketch',
-      id: 'sketch'
+      id: 'sketch',
+      description: '<p>Testbeschreibung Testbeschreibung Testbeschreibung</p>'
     },
     {
       name: 'VS Code',
@@ -14,7 +15,8 @@ export default {
     },
     {
       name: 'Photoshop CC',
-      id: 'photoshop'
+      id: 'photoshop',
+      description: '<p>Testbeschreibung Testbeschreibung Testbeschreibung</p>'
     }
   ],
   shortcuts: {
@@ -29,14 +31,15 @@ export default {
       disabled: false
     },
     {
-      name: 'win',
+      name: 'Windows',
       checked: false,
       disabled: true
     }
   ],
   levels: [
     {
-      name: 'junior'
+      name: 'junior',
+      description: '<p>Testbeschreibung Testbeschreibung Testbeschreibung</p>'
     },
     {
       name: 'intermediate'
@@ -44,6 +47,20 @@ export default {
     {
       name: 'senior',
       disabled: true
+    }
+  ],
+  modes: [
+    {
+      name: 'speed',
+      checked: true,
+      disabled: false,
+      description:
+        '<p>You will play five rounds. Whos the fastest will be the first.</p>'
+    },
+    {
+      name: 'countdown',
+      disabled: true,
+      checked: false
     }
   ]
 };
