@@ -99,6 +99,7 @@ const StyledSettings = styled.div`
     }
 
     h4 {
+      cursor: pointer;
       position: relative;
       display: flex;
       align-items: center;

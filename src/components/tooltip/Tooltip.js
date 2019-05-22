@@ -22,7 +22,6 @@ const ToolTip = ({ description, disabled }) => {
   };
 
   const handleScroll = () => {
-    console.log('scroll');
     const { top } = triggerRef.current.getBoundingClientRect();
     const { height } = contentRef.current.getBoundingClientRect();
 
@@ -42,6 +41,7 @@ const ToolTip = ({ description, disabled }) => {
         className="tooltip__trigger"
         onMouseEnter={() => handleVisible(true)}
         onMouseLeave={() => handleVisible(false)}
+        onTouchStart={() => handleVisible(prev => !prev)}
       >
         <span>?</span>
       </div>
