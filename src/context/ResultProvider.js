@@ -15,11 +15,22 @@ const ResultProvider = ({ children }) => {
   const [loadedResults, setLoadedResults] = useState(false);
 
   useEffect(() => {
-    firebase.auth().signInAnonymously();
+    firebase
+      .auth()
+      .signInAnonymously()
+      .catch(error => {
+        const { code, message } = error;
+
+        if (code === 'auth/operation-not-allowed') {
+          alert('You must enable Anonymous auth in the Firebase Console.');
+        } else {
+          console.error(code, message);
+        }
+      });
 
     return () => firebase.auth().signOut();
   }, []);
-  
+
   const appResults = firebase
     .database()
     .ref()
