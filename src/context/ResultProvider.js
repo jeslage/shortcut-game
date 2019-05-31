@@ -1,6 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { SettingsContext } from './SettingsProvider';
-import * as firebase from 'firebase';
+
+import firebase from '../config/db/firebase';
+import 'firebase/database';
+import 'firebase/auth';
 
 export const ResultContext = React.createContext();
 
@@ -11,6 +14,12 @@ const ResultProvider = ({ children }) => {
   const [results, setResults] = useState([]);
   const [loadedResults, setLoadedResults] = useState(false);
 
+  useEffect(() => {
+    firebase.auth().signInAnonymously();
+
+    return () => firebase.auth().signOut();
+  }, []);
+  
   const appResults = firebase
     .database()
     .ref()
