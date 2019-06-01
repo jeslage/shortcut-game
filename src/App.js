@@ -34,9 +34,9 @@ const App = () => {
         <h2>This game is not for touch devices.</h2>
       ) : (
         <>
+          {view === 1 && <Start />}
           {view === 2 && <Game />}
           {view === 3 && <Result />}
-          {view === 1 && <Start />}
         </>
       )}
     </div>

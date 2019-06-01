@@ -7,7 +7,7 @@ import {
   removeFromShortcuts
 } from '../../context/SettingsProvider';
 
-import { useWindowEvent } from '../../utils/hooks';
+import { useDocumentEvent } from '../../utils/hooks';
 import getKeyName from '../../utils/getKeyName';
 
 import Hint from '../hint/Hint';
@@ -25,8 +25,8 @@ const Shortcuts = ({ addShortcutTime, stopTimer, resetTimer }) => {
   const { selectedLevel, round } = settings;
   const { currentShortcut, availableShortcuts } = appShortcuts;
 
-  useWindowEvent('keydown', e => handleKeyDown(e));
-  useWindowEvent('keyup', e => handleKeyUp(e));
+  useDocumentEvent('keydown', e => handleKeyDown(e));
+  useDocumentEvent('keyup', e => handleKeyUp(e));
 
   // Make empty array for pressed keys to compare arrays
   const [pressedKeys, setPressedKeys] = useState([]);
@@ -41,6 +41,7 @@ const Shortcuts = ({ addShortcutTime, stopTimer, resetTimer }) => {
       stopTimer();
       resetTimer();
       resetSettings();
+      return;
     }
 
     // Workaround for async set state
@@ -58,6 +59,10 @@ const Shortcuts = ({ addShortcutTime, stopTimer, resetTimer }) => {
       setTimeout(() => {
         const newShortcut = getRandomShortcut(availableShortcuts);
         const solvedRound = round + 1;
+
+        // Reset pressed keys
+        setPressedKeys([]);
+        updatedKeys = [];
 
         setSettings(state => ({
           ...state,
