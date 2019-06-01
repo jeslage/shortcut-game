@@ -4,7 +4,7 @@ export default [
     shortcut: ['Cmd', 'j']
   },
   {
-    description: 'Neue Ebene durch Ausschneiden	',
+    description: 'Neue Ebene durch Ausschneiden',
     shortcut: ['Shift', 'Cmd', 'j']
   },
   {

@@ -1,6 +1,7 @@
 import sketch from './shortcuts/sketch';
 import vscode from './shortcuts/vscode';
 import photoshop from './shortcuts/photoshop';
+import indesign from './shortcuts/indesign';
 
 export default {
   applications: [
@@ -15,14 +16,18 @@ export default {
     },
     {
       name: 'Photoshop CC',
-      id: 'photoshop',
-      description: '<p>Testbeschreibung Testbeschreibung Testbeschreibung</p>'
+      id: 'photoshop'
+    },
+    {
+      name: 'InDesign CC',
+      id: 'indesign'
     }
   ],
   shortcuts: {
     sketch,
     vscode,
-    photoshop
+    photoshop,
+    indesign
   },
   systems: [
     {
@@ -39,14 +44,16 @@ export default {
   levels: [
     {
       name: 'junior',
-      description: '<p>Testbeschreibung Testbeschreibung Testbeschreibung</p>'
+      description: '<p>Pressed keys and the hidden shortcut will be shown.</p>'
     },
     {
-      name: 'intermediate'
+      name: 'intermediate',
+      description: '<p>Pressed keys will be shown.</p>'
     },
     {
       name: 'senior',
-      disabled: true
+      description:
+        '<p>Neither the shortcut nor the pressed keys will be shown.</p>'
     }
   ],
   modes: [
@@ -60,7 +67,9 @@ export default {
     {
       name: 'countdown',
       disabled: true,
-      checked: false
+      checked: false,
+      description:
+        '<p>Play with a countdown of 30 seconds. Who solves the most shortcuts in the given time will be the first.</p>'
     }
   ]
 };

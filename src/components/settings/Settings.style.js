@@ -94,7 +94,14 @@ const StyledSettings = styled.div`
       }
 
       &:disabled ~ h4 {
-        opacity: 0.5;
+        &:before,
+        .tooltip__trigger {
+          border-color: rgba(0, 0, 0, 0.5);
+        }
+
+        span {
+          opacity: 0.5;
+        }
       }
     }
 
