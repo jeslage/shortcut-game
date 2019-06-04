@@ -34,9 +34,7 @@ const Shortcuts = ({ addShortcutTime, stopTimer, resetTimer }) => {
     let includedValues = 0;
 
     firstArray.forEach(string => {
-      if (secondArray.includes(string)) {
-        includedValues++;
-      }
+      if (secondArray.includes(string)) includedValues++;
     });
 
     if (
@@ -44,9 +42,9 @@ const Shortcuts = ({ addShortcutTime, stopTimer, resetTimer }) => {
       firstArray.length === secondArray.length
     ) {
       return true;
-    } else {
-      return false;
     }
+
+    return false;
   };
 
   const handleKeyDown = e => {

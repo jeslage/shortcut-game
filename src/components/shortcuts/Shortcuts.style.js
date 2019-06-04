@@ -13,7 +13,7 @@ const StyledShortcuts = styled.div`
   text-align: center;
 
   h2 {
-    font-size: 100px;
+    font-size: 80px;
     margin: 0 0 40px;
   }
 `;
