@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import isEqual from 'lodash.isequal';
 
 import {
   SettingsContext,
@@ -31,6 +30,25 @@ const Shortcuts = ({ addShortcutTime, stopTimer, resetTimer }) => {
   // Make empty array for pressed keys to compare arrays
   const [pressedKeys, setPressedKeys] = useState([]);
 
+  const compareArrays = (firstArray, secondArray) => {
+    let includedValues = 0;
+
+    firstArray.forEach(string => {
+      if (secondArray.includes(string)) {
+        includedValues++;
+      }
+    });
+
+    if (
+      includedValues === secondArray.length &&
+      firstArray.length === secondArray.length
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   const handleKeyDown = e => {
     e.preventDefault();
 
@@ -54,7 +72,7 @@ const Shortcuts = ({ addShortcutTime, stopTimer, resetTimer }) => {
     }
 
     // Check if pressed keys are equal to shortcut
-    if (isEqual(updatedKeys, currentShortcut.shortcut)) {
+    if (compareArrays(updatedKeys, currentShortcut.shortcut)) {
       // Set minimal timeout to visibly show last key pressed
       setTimeout(() => {
         const newShortcut = getRandomShortcut(availableShortcuts);
