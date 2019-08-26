@@ -1,12 +1,14 @@
-import React, { useState, useContext, useRef } from 'react';
-import { SettingsContext } from '../../context/SettingsProvider';
-import { TimerContext } from '../../context/TimerProvider';
+import React, { useState, useContext, useRef } from "react";
+import { SettingsContext } from "../../context/SettingsProvider";
+import { TimerContext } from "../../context/TimerProvider";
 
-import StyledSettings from './Settings.style';
-import CrossIcon from '../../icons/cross';
-import MistakeIcon from '../../icons/mistake';
-import Countdown from '../countdown/Countdown';
-import ToolTip from '../tooltip/Tooltip';
+import StyledSettings from "./Settings.style";
+import CrossIcon from "../../icons/cross";
+import MistakeIcon from "../../icons/mistake";
+import Countdown from "../countdown/Countdown";
+import ToolTip from "../tooltip/Tooltip";
+
+import CircleIcon from "../../icons/circle";
 
 const Settings = () => {
   const { updateShortcuts, setSettings, settings } = useContext(
@@ -38,12 +40,12 @@ const Settings = () => {
   const handlePlayerChange = () => {
     if (mistake) setMistake(false);
 
-    handleStateChange('player', input.current.value);
+    handleStateChange("player", input.current.value);
   };
 
   const startCountdown = () => {
     if (input.current.checkValidity()) {
-      handleStateChange('player', input.current.value);
+      handleStateChange("player", input.current.value);
 
       updateShortcuts();
       setCountdown(true);
@@ -54,7 +56,7 @@ const Settings = () => {
   };
 
   const startGame = () => {
-    handleStateChange('view', 2);
+    handleStateChange("view", 2);
     startTimer();
   };
 
@@ -62,14 +64,14 @@ const Settings = () => {
     <div role="group" className="settings__wrapper">
       {entries.map(entry => {
         const id = entry.id || entry.name;
-
+        console.log(entry);
         return (
           <div className="settings__entry" key={id}>
             <label htmlFor={id} key={id}>
               <input
                 type="radio"
                 id={id}
-                name={selectedEntry}
+                name={stateKey}
                 value={id}
                 defaultChecked={id === selectedEntry}
                 disabled={entry.disabled || countdown}
@@ -105,7 +107,7 @@ const Settings = () => {
               type="text"
               name="player"
               ref={input}
-              value={player ? player : ''}
+              value={player ? player : ""}
               onChange={() => handlePlayerChange()}
               placeholder="Insert name"
               autoComplete="given-name"
@@ -121,6 +123,7 @@ const Settings = () => {
           entries={registeredApps}
           selectedEntry={selectedApp}
           stateKey="selectedApp"
+          withShortcutsCount
         />
 
         <h3>System</h3>
@@ -143,14 +146,25 @@ const Settings = () => {
           selectedEntry={selectedLevel}
           stateKey="selectedLevel"
         />
-
+        <p className="settings__count">
+          5 out of
+          <span>
+            {
+              registeredApps
+                .filter(app => app.id === selectedApp)[0]
+                .shortcuts.filter(item => item.level <= selectedLevel).length
+            }
+            <CircleIcon />
+          </span>
+          shortcuts will be tested
+        </p>
         <button
           type="button"
           onClick={startCountdown}
-          onKeyDown={e => (e.key === 'Enter' ? startCountdown(e) : '')}
+          onKeyDown={e => (e.key === "Enter" ? startCountdown(e) : "")}
           disabled={countdown}
         >
-          {countdown ? <Countdown onEnd={() => startGame()} /> : 'Start Test'}
+          {countdown ? <Countdown onEnd={() => startGame()} /> : "Start Test"}
         </button>
       </form>
     </StyledSettings>

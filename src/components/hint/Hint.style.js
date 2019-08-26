@@ -40,7 +40,7 @@ const StyledKey = styled.div`
 
   ${props =>
     props.hidden &&
-    props.level !== "junior" &&
+    props.level !== "1" &&
     css`
       display: none;
     `}
@@ -53,7 +53,7 @@ const StyledKey = styled.div`
 
     ${props =>
       props.hidden &&
-      props.level === "junior" &&
+      props.level === "1" &&
       css`
         display: none;
       `}

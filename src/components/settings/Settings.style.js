@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const StyledSettings = styled.div`
   position: relative;
@@ -7,7 +7,7 @@ const StyledSettings = styled.div`
   justify-content: center;
   font-size: 1.5rem;
   font-weight: bold;
-  max-width: 800px;
+  max-width: 900px;
   margin: 70px auto;
 
   &:after,
@@ -16,8 +16,8 @@ const StyledSettings = styled.div`
     width: 100%;
     height: 100%;
     background: #fff;
-    max-width: 800px;
-    content: '';
+    max-width: 900px;
+    content: "";
   }
 
   &:before {
@@ -54,7 +54,7 @@ const StyledSettings = styled.div`
     border-right: 5px solid black;
     padding: 0;
 
-    label[for='player'] {
+    label[for="player"] {
       position: relative;
       width: 100%;
 
@@ -65,7 +65,7 @@ const StyledSettings = styled.div`
       }
     }
 
-    input[type='text'] {
+    input[type="text"] {
       display: block;
       width: calc(100% - 60px);
       padding: 20px 30px;
@@ -82,7 +82,7 @@ const StyledSettings = styled.div`
   .settings__entry {
     width: 50%;
 
-    input[type='radio'] {
+    input[type="radio"] {
       position: absolute;
       height: 1px;
       width: 1px;
@@ -120,7 +120,7 @@ const StyledSettings = styled.div`
         width: 25px;
         height: 25px;
         border: 5px solid #000;
-        content: '';
+        content: "";
       }
 
       svg {
@@ -152,6 +152,34 @@ const StyledSettings = styled.div`
     &:disabled {
       background: #000;
       color: #fff;
+    }
+  }
+
+  .settings__count {
+    padding: 20px 0;
+    width: calc(100% - 10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    border-top: 5px solid #000;
+    border-left: 5px solid #000;
+    border-right: 5px solid #000;
+    margin: 0;
+
+    span {
+      position: relative;
+      margin: 0 15px;
+      color: red;
+      transform: rotate(-8deg);
+
+      svg {
+        position: absolute;
+        top: -15px;
+        left: -15px;
+        width: 55px;
+        height: 55px;
+      }
     }
   }
 `;

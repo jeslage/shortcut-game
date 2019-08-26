@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
 const StyledTooltip = styled.div`
   position: relative;
@@ -21,21 +21,23 @@ const StyledTooltip = styled.div`
   }
 
   .tooltip__content {
-    visibility: ${props => (props.visible ? 'visible' : 'hidden')};
+    visibility: ${props => (props.visible ? "visible" : "hidden")};
     position: absolute;
-    min-width: 100px;
-    max-width: 350px;
-    background: #000;
-    color: #fff;
     right: 50%;
     transform: translateX(calc(50% - 3px));
     margin: 20px 0;
-    padding: 15px;
 
     p {
+      position: relative;
+      z-index: 99;
       margin: 0;
-      padding: 0;
+      padding: 15px;
+      color: #000;
+      border: 5px solid #000;
+      background: #fff;
       hyphens: auto;
+      min-width: 100px;
+      max-width: 350px;
     }
 
     &:before {
@@ -47,21 +49,21 @@ const StyledTooltip = styled.div`
       border-top: none;
       border-left: none;
       transform: rotate(45deg) translateX(-50%);
-      content: '';
+      content: "";
     }
 
     ${props =>
-      props.position === 'top' &&
+      props.position === "top" &&
       css`
         bottom: 100%;
 
         &:before {
-          bottom: -15px;
+          bottom: -17px;
         }
       `}
 
     ${props =>
-      props.position === 'bottom' &&
+      props.position === "bottom" &&
       css`
         top: 100%;
 

@@ -7,27 +7,25 @@ export default {
   applications: [
     {
       name: "Sketch",
-      id: "sketch"
+      id: "sketch",
+      shortcuts: sketch
     },
     {
       name: "VS Code",
-      id: "vscode"
+      id: "vscode",
+      shortcuts: vscode
     },
     {
       name: "Photoshop CC",
-      id: "photoshop"
+      id: "photoshop",
+      shortcuts: photoshop
     },
     {
       name: "InDesign CC",
-      id: "indesign"
+      id: "indesign",
+      shortcuts: indesign
     }
   ],
-  shortcuts: {
-    sketch,
-    vscode,
-    photoshop,
-    indesign
-  },
   systems: [
     {
       name: "osx",
@@ -43,14 +41,17 @@ export default {
   levels: [
     {
       name: "junior",
+      id: "1",
       description: "<p>Pressed keys and the hidden shortcut will be shown.</p>"
     },
     {
       name: "intermediate",
+      id: "2",
       description: "<p>Pressed keys will be shown.</p>"
     },
     {
       name: "senior",
+      id: "3",
       description:
         "<p>Neither the shortcut nor the pressed keys will be shown.</p>"
     }

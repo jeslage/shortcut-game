@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import uuidv4 from 'uuid/v4';
+import React, { useState } from "react";
+import uuidv4 from "uuid/v4";
 
-import config from '../config/index';
+import config from "../config/index";
 
 export const SettingsContext = React.createContext();
 
@@ -14,7 +14,7 @@ export const removeFromShortcuts = (arr, shortcut) => {
 };
 
 const SettingsProvider = ({ children }) => {
-  const { applications, shortcuts, systems, levels, modes } = config;
+  const { applications, systems, levels, modes } = config;
 
   const [settings, setSettings] = useState({
     round: 0,
@@ -26,7 +26,7 @@ const SettingsProvider = ({ children }) => {
     registeredApps: applications,
     selectedApp: applications[0].id,
     registeredLevels: levels,
-    selectedLevel: levels[0].name,
+    selectedLevel: levels[0].id,
     registeredModes: modes,
     selectedMode: modes[0].name
   });
@@ -37,15 +37,18 @@ const SettingsProvider = ({ children }) => {
   });
 
   const updateShortcuts = () => {
-    const { selectedApp } = settings;
-    const firstShortcut = getRandomShortcut(shortcuts[selectedApp]);
+    const { selectedApp, selectedLevel } = settings;
+    const app = applications.filter(app => app.id === selectedApp);
+
+    const filteredShortcuts = app[0].shortcuts.filter(
+      shortcut => shortcut.level <= selectedLevel
+    );
+    console.log(filteredShortcuts);
+    const firstShortcut = getRandomShortcut(filteredShortcuts);
 
     setAppShortcuts({
       currentShortcut: firstShortcut,
-      availableShortcuts: removeFromShortcuts(
-        shortcuts[selectedApp],
-        firstShortcut
-      )
+      availableShortcuts: removeFromShortcuts(filteredShortcuts, firstShortcut)
     });
   };
 

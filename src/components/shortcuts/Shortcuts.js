@@ -1,17 +1,17 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState } from "react";
 
 import {
   SettingsContext,
   getRandomShortcut,
   removeFromShortcuts
-} from '../../context/SettingsProvider';
+} from "../../context/SettingsProvider";
 
-import { useDocumentEvent } from '../../utils/hooks';
-import getKeyName from '../../utils/getKeyName';
+import { useDocumentEvent } from "../../utils/hooks";
+import getKeyName from "../../utils/getKeyName";
 
-import Hint from '../hint/Hint';
+import Hint from "../hint/Hint";
 
-import StyledShortcuts from './Shortcuts.style.js';
+import StyledShortcuts from "./Shortcuts.style.js";
 
 const Shortcuts = ({ addShortcutTime, stopTimer, resetTimer }) => {
   const {
@@ -24,8 +24,8 @@ const Shortcuts = ({ addShortcutTime, stopTimer, resetTimer }) => {
   const { selectedLevel, round } = settings;
   const { currentShortcut, availableShortcuts } = appShortcuts;
 
-  useDocumentEvent('keydown', e => handleKeyDown(e));
-  useDocumentEvent('keyup', e => handleKeyUp(e));
+  useDocumentEvent("keydown", e => handleKeyDown(e));
+  useDocumentEvent("keyup", e => handleKeyUp(e));
 
   // Make empty array for pressed keys to compare arrays
   const [pressedKeys, setPressedKeys] = useState([]);
@@ -53,7 +53,7 @@ const Shortcuts = ({ addShortcutTime, stopTimer, resetTimer }) => {
     const key = getKeyName(e.key);
 
     // Escape for quitting game
-    if (key === 'Escape') {
+    if (key === "Escape") {
       stopTimer();
       resetTimer();
       resetSettings();
@@ -73,35 +73,37 @@ const Shortcuts = ({ addShortcutTime, stopTimer, resetTimer }) => {
     if (compareArrays(updatedKeys, currentShortcut.shortcut)) {
       // Set minimal timeout to visibly show last key pressed
       setTimeout(() => {
-        const newShortcut = getRandomShortcut(availableShortcuts);
-        const solvedRound = round + 1;
-
         // Reset pressed keys
         setPressedKeys([]);
-        updatedKeys = [];
 
+        const solvedRound = round + 1;
         setSettings(state => ({
           ...state,
-          round: state.round + 1
+          round: solvedRound
         }));
 
         addShortcutTime(currentShortcut);
 
-        setAppShortcuts({
-          currentShortcut: newShortcut,
-          availableShortcuts: removeFromShortcuts(
-            availableShortcuts,
-            newShortcut
-          )
-        });
-
-        if (solvedRound === 5) {
+        // Check if all rounds have been played or shortcuts array is empty else update shortcuts
+        if (solvedRound === 5 || availableShortcuts.length === 0) {
           stopTimer();
 
           setSettings(state => ({
             ...state,
             view: state.view + 1
           }));
+        } else {
+          const newShortcut = getRandomShortcut(availableShortcuts);
+
+          updatedKeys = [];
+
+          setAppShortcuts({
+            currentShortcut: newShortcut,
+            availableShortcuts: removeFromShortcuts(
+              availableShortcuts,
+              newShortcut
+            )
+          });
         }
       }, 10);
     }
@@ -116,7 +118,7 @@ const Shortcuts = ({ addShortcutTime, stopTimer, resetTimer }) => {
     <StyledShortcuts>
       <h2>{currentShortcut.description}</h2>
       <div className="Shortcuts__hint">
-        {selectedLevel !== 'senior' && (
+        {selectedLevel !== "3" && (
           <Hint
             shortcut={currentShortcut.shortcut}
             pressedKeys={pressedKeys}
