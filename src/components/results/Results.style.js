@@ -26,6 +26,7 @@ const StyledResults = styled.div`
     width: 100%;
     border-collapse: collapse;
     background: #fff;
+    margin-bottom: 30px;
   }
 
   td,
@@ -85,6 +86,7 @@ const StyledResults = styled.div`
     position: absolute;
     bottom: 0;
     left: 0;
+    border-top: 5px solid black;
   }
 `;
 
