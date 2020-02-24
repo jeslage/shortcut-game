@@ -67,9 +67,7 @@ export default {
     {
       name: "countdown",
       disabled: true,
-      checked: false,
-      description:
-        "<p>Play with a countdown of 30 seconds. Who solves the most shortcuts in the given time will be the first.</p>"
+      checked: false
     }
   ]
 };

@@ -4,7 +4,7 @@ import StyledTopLine from "./TopLine.style.js";
 
 const TopLine = ({ label }) => (
   <StyledTopLine>
-    <span className="topLine__icon" />
+    <div className="topLine__icon" />
 
     <div className="topLine__spacer">
       <i />

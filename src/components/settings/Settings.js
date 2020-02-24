@@ -123,12 +123,14 @@ const Settings = () => {
         />
 
         <p className="settings__count">
-          5 out of{" "}
-          {
-            registeredApps
-              .filter(app => app.id === selectedApp)[0]
-              .shortcuts.filter(item => item.level <= selectedLevel).length
-          }{" "}
+          <strong>5</strong> out of
+          <strong>
+            {
+              registeredApps
+                .filter(app => app.id === selectedApp)[0]
+                .shortcuts.filter(item => item.level <= selectedLevel).length
+            }
+          </strong>
           shortcuts will be tested
         </p>
         <Button

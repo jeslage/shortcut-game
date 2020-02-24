@@ -49,6 +49,7 @@ const StyledTooltip = styled.div`
       height: 20px;
       border-top: none;
       border-left: none;
+      background: black;
       transform: rotate(45deg) translateX(-50%);
       content: "";
     }

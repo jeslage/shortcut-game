@@ -48,10 +48,7 @@ const ToolTip = ({ description, disabled }) => {
       </div>
       <div className="tooltip__content-wrapper" ref={contentRef}>
         <TopLine />
-        <div
-          className="tooltip__content"
-          dangerouslySetInnerHTML={{ __html: description }}
-        />
+        <div dangerouslySetInnerHTML={{ __html: description }} />
       </div>
     </StyledToolTip>
   );

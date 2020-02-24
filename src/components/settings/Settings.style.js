@@ -74,9 +74,9 @@ const StyledSettings = styled.div`
     font-size: 16px;
     font-weight: normal;
 
-    span {
+    strong {
       position: relative;
-      margin: 0 15px;
+      margin: 0 5px;
     }
   }
 `;
