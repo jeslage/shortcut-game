@@ -3,12 +3,11 @@ import { SettingsContext } from "../../context/SettingsProvider";
 import { TimerContext } from "../../context/TimerProvider";
 
 import StyledSettings from "./Settings.style";
-import CrossIcon from "../../icons/cross";
 import MistakeIcon from "../../icons/mistake";
 import Countdown from "../countdown/Countdown";
-import ToolTip from "../tooltip/Tooltip";
-
-import CircleIcon from "../../icons/circle";
+import RadioButtons from "../radioButtons/RadioButtons";
+import TopLine from "../topLine/TopLine";
+import Button from "../button/Button";
 
 const Settings = () => {
   const { updateShortcuts, setSettings, settings } = useContext(
@@ -60,45 +59,10 @@ const Settings = () => {
     startTimer();
   };
 
-  const RadioButtons = ({ entries, selectedEntry, stateKey }) => (
-    <div role="group" className="settings__wrapper">
-      {entries.map(entry => {
-        const id = entry.id || entry.name;
-        console.log(entry);
-        return (
-          <div className="settings__entry" key={id}>
-            <label htmlFor={id} key={id}>
-              <input
-                type="radio"
-                id={id}
-                name={stateKey}
-                value={id}
-                defaultChecked={id === selectedEntry}
-                disabled={entry.disabled || countdown}
-                onChange={e => handleStateChange(stateKey, e.target.value)}
-              />
-              <h4>
-                <CrossIcon />
-
-                <span>{entry.name}</span>
-
-                {entry.description && (
-                  <ToolTip
-                    description={entry.description}
-                    disabled={countdown}
-                  />
-                )}
-              </h4>
-            </label>
-          </div>
-        );
-      })}
-    </div>
-  );
-
   return (
     <StyledSettings>
       <form>
+        <TopLine label="Settings" />
         <h3>Name</h3>
 
         <div role="group" className="settings__wrapper">
@@ -120,52 +84,61 @@ const Settings = () => {
 
         <h3>App</h3>
         <RadioButtons
-          entries={registeredApps}
-          selectedEntry={selectedApp}
-          stateKey="selectedApp"
-          withShortcutsCount
+          disabled={countdown}
+          className="settings__radio"
+          options={registeredApps}
+          value={selectedApp}
+          name="selectedApp"
+          onChange={val => handleStateChange("selectedApp", val)}
         />
 
         <h3>System</h3>
         <RadioButtons
-          entries={registeredSystems}
-          selectedEntry={selectedSystem}
-          stateKey="selectedSystem"
+          disabled={countdown}
+          className="settings__radio"
+          options={registeredSystems}
+          value={selectedSystem}
+          name="selectedSystem"
+          onChange={val => handleStateChange("selectedSystem", val)}
         />
 
         <h3>Mode</h3>
         <RadioButtons
-          entries={registeredModes}
-          selectedEntry={selectedMode}
-          stateKey="selectedMode"
+          disabled={countdown}
+          className="settings__radio"
+          options={registeredModes}
+          value={selectedMode}
+          name="selectedMode"
+          onChange={val => handleStateChange("selectedMode", val)}
         />
 
         <h3>Level</h3>
         <RadioButtons
-          entries={registeredLevels}
-          selectedEntry={selectedLevel}
-          stateKey="selectedLevel"
+          disabled={countdown}
+          className="settings__radio"
+          options={registeredLevels}
+          value={selectedLevel}
+          name="selectedLevel"
+          onChange={val => handleStateChange("selectedLevel", val)}
         />
+
         <p className="settings__count">
-          5 out of
-          <span>
-            {
-              registeredApps
-                .filter(app => app.id === selectedApp)[0]
-                .shortcuts.filter(item => item.level <= selectedLevel).length
-            }
-            <CircleIcon />
-          </span>
+          5 out of{" "}
+          {
+            registeredApps
+              .filter(app => app.id === selectedApp)[0]
+              .shortcuts.filter(item => item.level <= selectedLevel).length
+          }{" "}
           shortcuts will be tested
         </p>
-        <button
+        <Button
           type="button"
           onClick={startCountdown}
           onKeyDown={e => (e.key === "Enter" ? startCountdown(e) : "")}
           disabled={countdown}
         >
           {countdown ? <Countdown onEnd={() => startGame()} /> : "Start Test"}
-        </button>
+        </Button>
       </form>
     </StyledSettings>
   );

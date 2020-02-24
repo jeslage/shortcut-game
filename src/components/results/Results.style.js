@@ -7,37 +7,14 @@ const StyledResults = styled.div`
   font-weight: bold;
   font-size: 1.5rem;
   max-width: 800px;
+  border: 5px solid black;
   margin: 120px auto;
-
-  &:after,
-  &:before {
-    position: absolute;
-    width: 100%;
-    height: calc(100vh - 240px);
-    background: #fff;
-    max-width: 800px;
-    content: "";
-  }
-
-  &:before {
-    top: 60px;
-    left: 50px;
-    background: #f4f4f4;
-  }
-
-  &:after {
-    top: 30px;
-    left: 20px;
-    border: 5px solid #000;
-  }
 
   .results__wrapper {
     position: relative;
     z-index: 1;
     height: calc(100% - 78px);
     overflow-y: scroll;
-    overflow-x: hidden;
-    border: 5px solid black;
     background: #fff;
   }
 
@@ -108,23 +85,6 @@ const StyledResults = styled.div`
     position: absolute;
     bottom: 0;
     left: 0;
-    outline: none;
-    font-size: 1.5rem;
-    font-weight: bold;
-    border: none;
-    border: 5px solid #000;
-    width: 100%;
-    padding: 20px;
-    text-transform: uppercase;
-    cursor: pointer;
-    z-index: 2;
-
-    &:hover,
-    &:focus,
-    &:disabled {
-      background: #000;
-      color: #fff;
-    }
   }
 `;
 

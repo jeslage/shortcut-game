@@ -20,12 +20,14 @@ const StyledTooltip = styled.div`
     height: 20px;
   }
 
-  .tooltip__content {
+  .tooltip__content-wrapper {
     visibility: ${props => (props.visible ? "visible" : "hidden")};
     position: absolute;
     right: 50%;
     transform: translateX(calc(50% - 3px));
     margin: 20px 0;
+    background: #fff;
+    border: 5px solid #000;
 
     p {
       position: relative;
@@ -33,11 +35,11 @@ const StyledTooltip = styled.div`
       margin: 0;
       padding: 15px;
       color: #000;
-      border: 5px solid #000;
       background: #fff;
       hyphens: auto;
-      min-width: 100px;
-      max-width: 350px;
+      width: 250px;
+      font-size: 16px;
+      line-height: 1.5;
     }
 
     &:before {
@@ -45,7 +47,6 @@ const StyledTooltip = styled.div`
       left: 50%;
       width: 20px;
       height: 20px;
-      background: #000;
       border-top: none;
       border-left: none;
       transform: rotate(45deg) translateX(-50%);

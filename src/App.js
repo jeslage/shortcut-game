@@ -1,12 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from "react";
 
-import Start from './views/Start';
-import Game from './views/Game';
-import Result from './views/Result';
+import Start from "./views/Start";
+import Game from "./views/Game";
+import Result from "./views/Result";
 
-import { SettingsContext } from './context/SettingsProvider';
-import { useWindowEvent } from './utils/hooks';
-import isTouchDevice from './utils/isTouchDevice';
+import { SettingsContext } from "./context/SettingsProvider";
+import { useWindowEvent } from "./utils/hooks";
+import isTouchDevice from "./utils/isTouchDevice";
 
 const App = () => {
   const { settings } = useContext(SettingsContext);
@@ -26,7 +26,7 @@ const App = () => {
     touchDeviceCheck();
   }, []);
 
-  useWindowEvent('resize', () => touchDeviceCheck());
+  useWindowEvent("resize", () => touchDeviceCheck());
 
   return (
     <div className="App">

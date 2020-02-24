@@ -1,12 +1,14 @@
-import React, { useContext, useRef, useEffect } from 'react';
+import React, { useContext, useRef, useEffect } from "react";
 
-import timeFormat from '../../utils/timeFormat';
-import { SettingsContext } from '../../context/SettingsProvider';
-import { TimerContext } from '../../context/TimerProvider';
-import { ResultContext } from '../../context/ResultProvider';
+import timeFormat from "../../utils/timeFormat";
+import { SettingsContext } from "../../context/SettingsProvider";
+import { TimerContext } from "../../context/TimerProvider";
+import { ResultContext } from "../../context/ResultProvider";
 
-import StyledResults from './Results.style';
-import CircleIcon from '../../icons/circle';
+import StyledResults from "./Results.style";
+import CircleIcon from "../../icons/circle";
+import TopLine from "../topLine/TopLine";
+import Button from "../button/Button";
 
 const Results = () => {
   const {
@@ -54,6 +56,7 @@ const Results = () => {
 
   return (
     <StyledResults>
+      <TopLine label="Results" />
       <div className="results__wrapper" ref={containerRef}>
         {loadedResults ? (
           <table>
@@ -74,7 +77,7 @@ const Results = () => {
                   <tr
                     key={result.playerId}
                     className={
-                      isCurrentPlayer ? 'results__current-player' : null
+                      isCurrentPlayer ? "results__current-player" : null
                     }
                     ref={isCurrentPlayer ? currentPlayerRef : null}
                   >
@@ -82,7 +85,7 @@ const Results = () => {
                       <span>{index + 1}.</span>
                       {isCurrentPlayer && <CircleIcon />}
                     </td>
-                    <td>{result.player || 'undefined'}</td>
+                    <td>{result.player || "undefined"}</td>
                     <td>{timeFormat(result.endTime)}</td>
                     <td>
                       {index > 0 &&
@@ -99,9 +102,9 @@ const Results = () => {
           </div>
         )}
       </div>
-      <button type="button" onClick={() => handleRetry()}>
+      <Button type="button" onClick={() => handleRetry()}>
         Retry
-      </button>
+      </Button>
     </StyledResults>
   );
 };

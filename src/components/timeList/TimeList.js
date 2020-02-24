@@ -1,11 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import timeFormat from '../../utils/timeFormat';
+import timeFormat from "../../utils/timeFormat";
 
-import StyledTimeList from './TimeList.style.js';
+import StyledTimeList from "./TimeList.style.js";
 
-const Time = ({ number, timePassed, description, difference }) => (
+const Time = ({ timePassed, description, difference }) => (
   <>
     <td className="Time__shortcut">{description}</td>
     <td className="Time__time">{timeFormat(timePassed)}</td>

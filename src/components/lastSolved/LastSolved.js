@@ -2,11 +2,14 @@ import React from "react";
 
 import timeFormat from "../../utils/timeFormat";
 
+import TopLine from "../topLine/TopLine";
+
 import StyledLastSolved from "./LastSolved.style";
 
 const LastSolved = ({ timeList }) =>
   timeList && timeList.length ? (
     <StyledLastSolved>
+      <TopLine />
       <table>
         <thead>
           <tr>

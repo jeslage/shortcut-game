@@ -5,7 +5,7 @@ const MistakeIcon = () => (
     <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
       <g
         transform="translate(-206.000000, -29.000000)"
-        stroke="#FF0000"
+        stroke="#000"
         strokeWidth="5"
       >
         <g transform="translate(207.092094, 32.465696)">
